@@ -121,11 +121,11 @@ class MasterEditorMenu extends MusicBeatState
 				case 'Menu Character Editor':
 					MusicBeatState.switchState(new MenuCharacterEditorState());
 				case 'Dialogue Portrait Editor':
-					MusicBeatState.switchState(new DialogueCharacterEditorState(), false);
+					MusicBeatState.switchState(new DialogueCharacterEditorState());
 				case 'Dialogue Editor':
-					MusicBeatState.switchState(new DialogueEditorState(), false);
+					MusicBeatState.switchState(new DialogueEditorState());
 				case 'Chart Editor'://felt it would be cool maybe
-					MusicBeatState.switchState(new ChartingState(), false);
+					MusicBeatState.switchState(new ChartingState());
 			}
 			FlxG.sound.music.volume = 0;
 			#if PRELOAD_ALL

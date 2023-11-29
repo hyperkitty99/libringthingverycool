@@ -323,7 +323,7 @@ class StoryMenuState extends MusicBeatState
 			PlayState.campaignMisses = 0;
 			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				MusicBeatState.switchState(new PlayState(), true);
+				MusicBeatState.switchState(new PlayState());
 				FreeplayState.destroyFreeplayVocals();
 			});
 		} else {
