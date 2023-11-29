@@ -49,8 +49,6 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 			'globalAntialiasing',
 			'bool',
 			true);
-		option.showBoyfriend = true;
-		option.onChange = onChangeAntiAliasing; //Changing onChange is only needed if you want to make a special interaction after it changes the value
 		addOption(option);
 
 		var option:Option = new Option('Shaders', //Name
@@ -75,18 +73,6 @@ class GraphicsSettingsSubState extends BaseOptionsMenu
 		#end
 
 		super();
-	}
-
-	function onChangeAntiAliasing()
-	{
-		for (sprite in members)
-		{
-			var sprite:Dynamic = sprite; //Make it check for FlxSprite instead of FlxBasic
-			var sprite:FlxSprite = sprite; //Don't judge me ok
-			if(sprite != null && (sprite is FlxSprite) && !(sprite is FlxText)) {
-				sprite.antialiasing = ClientPrefs.globalAntialiasing;
-			}
-		}
 	}
 
 	function onChangeFramerate()
