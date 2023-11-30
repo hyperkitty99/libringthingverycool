@@ -1,0 +1,122 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				1,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "libing idle"
+		},
+		{
+			"offsets": [
+				53,
+				5
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "libing left0"
+		},
+		{
+			"offsets": [
+				-8,
+				-26
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "libing down0"
+		},
+		{
+			"offsets": [
+				2,
+				34
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "libing up0"
+		},
+		{
+			"offsets": [
+				-40,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "libing right0"
+		},
+		{
+			"offsets": [
+				53,
+				5
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFTmiss",
+			"loop": false,
+			"name": "libing left miss"
+		},
+		{
+			"offsets": [
+				-7,
+				-26
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWNmiss",
+			"loop": false,
+			"name": "libing down miss"
+		},
+		{
+			"offsets": [
+				2,
+				34
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUPmiss",
+			"loop": false,
+			"name": "libing up miss"
+		},
+		{
+			"offsets": [
+				-41,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHTmiss",
+			"loop": false,
+			"name": "libing right miss"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/libing",
+	"position": [
+		0,
+		270
+	],
+	"healthicon": "libing",
+	"flip_x": true,
+	"healthbar_colors": [
+		255,
+		255,
+		255
+	],
+	"camera_position": [
+		40,
+		-600
+	],
+	"sing_duration": 4,
+	"scale": 1
+}

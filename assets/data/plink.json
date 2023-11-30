@@ -1,0 +1,78 @@
+{
+	"animations": [
+		{
+			"offsets": [
+				0,
+				0
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "idle",
+			"loop": false,
+			"name": "plink idle"
+		},
+		{
+			"offsets": [
+				37,
+				-2
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singLEFT",
+			"loop": false,
+			"name": "plink left"
+		},
+		{
+			"offsets": [
+				0,
+				-11
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singDOWN",
+			"loop": false,
+			"name": "plink down"
+		},
+		{
+			"offsets": [
+				-8,
+				65
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singUP",
+			"loop": false,
+			"name": "plink up"
+		},
+		{
+			"offsets": [
+				-30,
+				1
+			],
+			"indices": [],
+			"fps": 24,
+			"anim": "singRIGHT",
+			"loop": false,
+			"name": "plink right"
+		}
+	],
+	"no_antialiasing": false,
+	"image": "characters/plink",
+	"position": [
+		0,
+		270
+	],
+	"healthicon": "plink",
+	"flip_x": false,
+	"healthbar_colors": [
+		161,
+		161,
+		161
+	],
+	"camera_position": [
+		40,
+		-600
+	],
+	"sing_duration": 4,
+	"scale": 1
+}
