@@ -9,7 +9,6 @@ import Controls;
 class ClientPrefs {
 	public static var downScroll:Bool = false;
 	public static var globalAntialiasing:Bool = true;
-	public static var noteSplashes:Bool = true;
 	public static var shaders:Bool = true;
 	public static var framerate:Int = 60;
 	public static var camZooms:Bool = true;
@@ -81,7 +80,6 @@ class ClientPrefs {
 	public static function saveSettings() {
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.globalAntialiasing = globalAntialiasing;
-		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.shaders = shaders;
 		FlxG.save.data.framerate = framerate;
 		FlxG.save.data.camZooms = camZooms;
@@ -114,9 +112,6 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.globalAntialiasing != null) {
 			globalAntialiasing = FlxG.save.data.globalAntialiasing;
-		}
-		if(FlxG.save.data.noteSplashes != null) {
-			noteSplashes = FlxG.save.data.noteSplashes;
 		}
 		if(FlxG.save.data.shaders != null) {
 			shaders = FlxG.save.data.shaders;
