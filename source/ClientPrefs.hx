@@ -8,7 +8,6 @@ import Controls;
 
 class ClientPrefs {
 	public static var downScroll:Bool = false;
-	public static var flashing:Bool = true;
 	public static var globalAntialiasing:Bool = true;
 	public static var noteSplashes:Bool = true;
 	public static var shaders:Bool = true;
@@ -84,7 +83,6 @@ class ClientPrefs {
 
 	public static function saveSettings() {
 		FlxG.save.data.downScroll = downScroll;
-		FlxG.save.data.flashing = flashing;
 		FlxG.save.data.globalAntialiasing = globalAntialiasing;
 		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.shaders = shaders;
@@ -119,9 +117,6 @@ class ClientPrefs {
 	public static function loadPrefs() {
 		if(FlxG.save.data.downScroll != null) {
 			downScroll = FlxG.save.data.downScroll;
-		}
-		if(FlxG.save.data.flashing != null) {
-			flashing = FlxG.save.data.flashing;
 		}
 		if(FlxG.save.data.globalAntialiasing != null) {
 			globalAntialiasing = FlxG.save.data.globalAntialiasing;
