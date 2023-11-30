@@ -30,7 +30,7 @@ typedef StageFile = {
 
 class StageData {
 	public static var forceNextDirectory:String = null;
-	public static function loadDirectory(SONG:SwagSong) {
+	public static function loadDirectory(SONG:PlayState.SwagSong) {
 		var stage:String = '';
 		if(SONG.stage != null) {
 			stage = SONG.stage;
