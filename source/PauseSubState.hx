@@ -66,7 +66,7 @@ class PauseSubState extends MusicBeatSubstate
 
 		var daSelected:String = menuItems[curSelected];
 
-		if (accepted && (cantUnpause <= 0 || !ClientPrefs.controllerMode))
+		if (accepted)
 		{
 			switch (daSelected)
 			{
