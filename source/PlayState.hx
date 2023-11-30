@@ -258,11 +258,8 @@ class PlayState extends MusicBeatState
 			'NOTE_RIGHT'
 		];
 
-		//Ratings
-		ratingsData.push(new Rating('sick')); //default rating
-
 		var rating:Rating = new Rating('shit');
-		rating.ratingMod = 0;
+		rating.hitWindow = 1;
 		rating.score = 50;
 		rating.noteSplash = false;
 		ratingsData.push(rating);
