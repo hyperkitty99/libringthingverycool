@@ -21,16 +21,15 @@ class FPS extends Sprite {
 	private var maxMemory:Float;
 
 	private var maxColor:FlxColor = 0xFFEC5454;
-	private var normalColor:FlxColor = 0xFF000000;
-	private var outlineColor:FlxColor = 0xFFFFFFFF;
+	private var normalColor:FlxColor = 0xFFFFFFFF;
+	private var outlineColor:FlxColor = 0xFF000000;
 	public var baseText:TextField;
 	public var outlineTexts:Array<TextField> = [];
-	private var outlineWidth:Int = 2;
-	private var outlineQuality:Int = 8;
+	private var outlineWidth:Int = 4;
+	private var outlineQuality:Int = 16;
 	var defaultTextFormat:TextFormat;
 
 	public var text(default, set):String; 
-
 
 	public function new(x:Float = 10, y:Float = 10) {
 		super();
@@ -38,7 +37,7 @@ class FPS extends Sprite {
 		this.x = x;
 		this.y = y;
 
-		this.defaultTextFormat = new TextFormat("VCR OSD Mono", 18, normalColor);
+		this.defaultTextFormat = new TextFormat(Paths.font("DIN2014Bold.ttf"), 20, normalColor);
 
 		baseText = new TextField();
 		baseText.defaultTextFormat = this.defaultTextFormat;
