@@ -308,7 +308,7 @@ class ChartingState extends MusicBeatState
 
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		for (i in 0...8){
-			var note:StrumNote = new StrumNote(GRID_SIZE * (i+1), strumLine.y, i % 4, 0);
+			var note:StrumNote = new StrumNote(GRID_SIZE * (i+1), strumLine.y, i % 4);
 			note.setGraphicSize(GRID_SIZE, GRID_SIZE);
 			note.updateHitbox();
 			note.playAnim('static', true);

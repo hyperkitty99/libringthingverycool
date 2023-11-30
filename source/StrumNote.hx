@@ -15,7 +15,6 @@ class StrumNote extends FlxSprite
 	public var downScroll:Bool = false;//plan on doing scroll directions soon -bb
 	public var sustainReduce:Bool = true;
 	
-	private var player:Int;
 	
 	public var texture(default, set):String = null;
 	private function set_texture(value:String):String {
@@ -26,11 +25,10 @@ class StrumNote extends FlxSprite
 		return value;
 	}
 
-	public function new(x:Float, y:Float, leData:Int, player:Int) {
+	public function new(x:Float, y:Float, leData:Int) {
 		colorSwap = new ColorSwap();
 		shader = colorSwap.shader;
 		noteData = leData;
-		this.player = player;
 		this.noteData = leData;
 		super(x, y);
 
@@ -86,7 +84,6 @@ class StrumNote extends FlxSprite
 		playAnim('static');
 		x += Note.swagWidth * noteData;
 		x += 50;
-		x += ((FlxG.width / 2) * player);
 		ID = noteData;
 	}
 
