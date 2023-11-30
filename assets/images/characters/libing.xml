@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="libing.png">
+	<!-- Created with Adobe Animate version 22.0.0.93 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="libing down0000" x="308" y="566" width="295" height="495" frameX="0" frameY="-7" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0001" x="308" y="566" width="295" height="495" frameX="0" frameY="-7" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0002" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0003" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0004" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0005" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0006" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0007" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0008" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0009" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0010" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0011" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0012" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0013" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0014" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down0015" x="3318" y="0" width="293" height="502" frameX="-2" frameY="0" frameWidth="295" frameHeight="502"/>
+	<SubTexture name="libing down miss0000" x="1609" y="563" width="295" height="495" frameX="-3" frameY="-7" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0001" x="1311" y="558" width="293" height="502" frameX="-5" frameY="0" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0002" x="1311" y="558" width="293" height="502" frameX="-5" frameY="0" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0003" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0004" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0005" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0006" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0007" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0008" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0009" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0010" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0011" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0012" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0013" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0014" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing down miss0015" x="0" y="566" width="303" height="497" frameX="0" frameY="-5" frameWidth="303" frameHeight="502"/>
+	<SubTexture name="libing idle0000" x="3619" y="533" width="299" height="511" frameX="-4" frameY="-18" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0001" x="3619" y="533" width="299" height="511" frameX="-4" frameY="-18" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0002" x="1004" y="558" width="302" height="511" frameX="0" frameY="-18" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0003" x="1004" y="558" width="302" height="511" frameX="0" frameY="-18" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0004" x="3619" y="0" width="299" height="528" frameX="-10" frameY="-1" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0005" x="3619" y="0" width="299" height="528" frameX="-10" frameY="-1" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0006" x="3314" y="532" width="300" height="528" frameX="-9" frameY="-1" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0007" x="3314" y="532" width="300" height="528" frameX="-9" frameY="-1" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0008" x="3008" y="532" width="301" height="529" frameX="-8" frameY="0" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0009" x="3008" y="532" width="301" height="529" frameX="-8" frameY="0" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0010" x="3008" y="532" width="301" height="529" frameX="-8" frameY="0" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0011" x="3008" y="532" width="301" height="529" frameX="-8" frameY="0" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0012" x="3008" y="532" width="301" height="529" frameX="-8" frameY="0" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing idle0013" x="3008" y="532" width="301" height="529" frameX="-8" frameY="0" frameWidth="309" frameHeight="529"/>
+	<SubTexture name="libing left0000" x="680" y="0" width="345" height="532"/>
+	<SubTexture name="libing left0001" x="680" y="0" width="345" height="532"/>
+	<SubTexture name="libing left0002" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0003" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0004" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0005" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0006" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0007" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0008" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0009" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0010" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0011" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0012" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0013" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0014" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left0015" x="2015" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0000" x="680" y="0" width="345" height="532"/>
+	<SubTexture name="libing left miss0001" x="2352" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0002" x="2352" y="533" width="332" height="528" frameX="-7" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0003" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0004" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0005" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0006" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0007" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0008" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0009" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0010" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0011" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0012" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0013" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0014" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing left miss0015" x="2015" y="0" width="335" height="528" frameX="-4" frameY="-4" frameWidth="345" frameHeight="532"/>
+	<SubTexture name="libing right0000" x="680" y="537" width="319" height="524" frameX="-1" frameY="-3" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0001" x="680" y="537" width="319" height="524" frameX="-1" frameY="-3" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0002" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0003" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0004" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0005" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0006" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0007" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0008" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0009" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0010" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0011" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0012" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0013" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0014" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right0015" x="2689" y="532" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0000" x="2355" y="0" width="319" height="524" frameX="-1" frameY="-3" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0001" x="2999" y="0" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0002" x="2999" y="0" width="314" height="527" frameX="0" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0003" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0004" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0005" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0006" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0007" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0008" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0009" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0010" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0011" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0012" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0013" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0014" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing right miss0015" x="2679" y="0" width="315" height="527" frameX="-2" frameY="0" frameWidth="320" frameHeight="527"/>
+	<SubTexture name="libing up0000" x="0" y="0" width="335" height="561"/>
+	<SubTexture name="libing up0001" x="0" y="0" width="335" height="561"/>
+	<SubTexture name="libing up0002" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0003" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0004" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0005" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0006" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0007" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0008" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0009" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0010" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0011" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0012" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0013" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0014" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up0015" x="1030" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0000" x="340" y="0" width="335" height="561"/>
+	<SubTexture name="libing up miss0001" x="1360" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0002" x="1360" y="0" width="325" height="553" frameX="-3" frameY="-8" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0003" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0004" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0005" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0006" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0007" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0008" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0009" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0010" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0011" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0012" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0013" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0014" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+	<SubTexture name="libing up miss0015" x="1690" y="0" width="320" height="558" frameX="-5" frameY="-3" frameWidth="335" frameHeight="561"/>
+</TextureAtlas>
