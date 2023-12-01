@@ -32,6 +32,7 @@ import Character;
 import flixel.system.debug.interaction.tools.Pointer.GraphicCursorCross;
 import lime.system.Clipboard;
 import flixel.animation.FlxAnimation;
+import flixel_5_3_1.ParallaxSprite as ParallaxSprite;
 
 #if MODS_ALLOWED
 import sys.FileSystem;
