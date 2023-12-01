@@ -117,6 +117,11 @@
 		150,
 		100
 	],
+	"alt_healthbar_colors": [
+		106,	
+		111,
+		140
+	],
 	"scale": 1,
 	"sing_duration": 4
 }

@@ -149,6 +149,7 @@ class PlayState extends MusicBeatState
 
 	private var healthBarBG:AttachedSprite;
 	public var healthBar:FlxBar;
+	public var healthBarLines:FlxBar;
 	var songPercent:Float = 0;
 
 	public var ratingsData:Array<Rating> = [];
@@ -502,19 +503,35 @@ class PlayState extends MusicBeatState
 		FlxG.fixedTimestep = false;
 		moveCameraSection();
 
-		healthBarBG = new AttachedSprite('healthBar');
+		healthBarBG = new AttachedSprite('healthBarTrans');
 		healthBarBG.x = 48;
 		healthBarBG.y = 48;
 		healthBarBG.scrollFactor.set();
-		healthBarBG.xAdd = -4;
-		healthBarBG.yAdd = -4;
 		if(ClientPrefs.downScroll) healthBarBG.y = 0.11 * FlxG.height;
 
-		healthBar = new FlxBar(healthBarBG.x + 4, healthBarBG.y + 4, RIGHT_TO_LEFT, Std.int(healthBarBG.width - 8), Std.int(healthBarBG.height - 8), this,
+		healthBar = new FlxBar(healthBarBG.x, healthBarBG.y, RIGHT_TO_LEFT, Std.int(healthBarBG.width), Std.int(healthBarBG.height), this,
+			'health', 0, 2); 
+
+		var kys = Paths.image('healthLines').bitmap;
+
+		healthBarLines = new FlxBar(48, 59, RIGHT_TO_LEFT, Std.int(healthBarBG.width), Std.int(kys.height), this,
 			'health', 0, 2);
+
 		healthBar.scrollFactor.set();
+		healthBarLines.scrollFactor.set();
+
+		var mask:AlphaMaskShader = new AlphaMaskShader();
+		healthBar.shader = mask;
+		mask.data.mask.input = Paths.image('healthBarMask').bitmap;
+
+		var maskTheBalls:AlphaMaskShader = new AlphaMaskShader();
+		healthBarLines.shader = maskTheBalls;
+		maskTheBalls.data.mask.input = kys;
+
 		add(healthBar);
+		add(healthBarLines);
 		add(healthBarBG);
+
 		healthBarBG.sprTracker = healthBar;
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
@@ -545,6 +562,7 @@ class PlayState extends MusicBeatState
 		strumLineNotes.cameras = [camHUD];
 		notes.cameras = [camHUD];
 		healthBar.cameras = [camHUD];
+		healthBarLines.cameras = [camHUD];
 		healthBarBG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
@@ -650,7 +668,11 @@ class PlayState extends MusicBeatState
 		healthBar.createFilledBar(FlxColor.fromRGB(dad.healthColorArray[0], dad.healthColorArray[1], dad.healthColorArray[2]),
 			FlxColor.fromRGB(boyfriend.healthColorArray[0], boyfriend.healthColorArray[1], boyfriend.healthColorArray[2]));
 
+		healthBarLines.createFilledBar(FlxColor.fromRGB(dad.altHealthColorArray[0], dad.altHealthColorArray[1], dad.altHealthColorArray[2]),
+			FlxColor.fromRGB(boyfriend.altHealthColorArray[0], boyfriend.altHealthColorArray[1], boyfriend.altHealthColorArray[2]));
+
 		healthBar.updateBar();
+		healthBarLines.updateBar();
 	}
 
 	public function addCharacterToList(newCharacter:String, type:Int) {

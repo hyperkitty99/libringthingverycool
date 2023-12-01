@@ -66,6 +66,11 @@
 		142,
 		90
 	],
+	"alt_healthbar_colors": [
+		184,
+		27,
+		54
+	],
 	"healthicon": "bf",
 	"image": "characters/plink",
 	"no_antialiasing": false,
