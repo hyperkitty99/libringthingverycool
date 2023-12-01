@@ -1,122 +1,122 @@
 {
 	"animations": [
 		{
+			"indices": [],
 			"offsets": [
 				1,
 				0
 			],
-			"indices": [],
 			"fps": 24,
 			"anim": "idle",
 			"loop": false,
 			"name": "libing idle"
 		},
 		{
+			"indices": [],
 			"offsets": [
 				53,
 				5
 			],
-			"indices": [],
 			"fps": 24,
 			"anim": "singLEFT",
 			"loop": false,
 			"name": "libing left0"
 		},
 		{
+			"indices": [],
 			"offsets": [
 				-8,
 				-26
 			],
-			"indices": [],
 			"fps": 24,
 			"anim": "singDOWN",
 			"loop": false,
 			"name": "libing down0"
 		},
 		{
+			"indices": [],
 			"offsets": [
 				2,
 				34
 			],
-			"indices": [],
 			"fps": 24,
 			"anim": "singUP",
 			"loop": false,
 			"name": "libing up0"
 		},
 		{
+			"indices": [],
 			"offsets": [
 				-40,
 				0
 			],
-			"indices": [],
 			"fps": 24,
 			"anim": "singRIGHT",
 			"loop": false,
 			"name": "libing right0"
 		},
 		{
+			"indices": [],
 			"offsets": [
 				53,
 				5
 			],
-			"indices": [],
 			"fps": 24,
 			"anim": "singLEFTmiss",
 			"loop": false,
 			"name": "libing left miss"
 		},
 		{
+			"indices": [],
 			"offsets": [
 				-7,
 				-26
 			],
-			"indices": [],
 			"fps": 24,
 			"anim": "singDOWNmiss",
 			"loop": false,
 			"name": "libing down miss"
 		},
 		{
+			"indices": [],
 			"offsets": [
 				2,
 				34
 			],
-			"indices": [],
 			"fps": 24,
 			"anim": "singUPmiss",
 			"loop": false,
 			"name": "libing up miss"
 		},
 		{
+			"indices": [],
 			"offsets": [
 				-41,
 				0
 			],
-			"indices": [],
 			"fps": 24,
 			"anim": "singRIGHTmiss",
 			"loop": false,
 			"name": "libing right miss"
 		}
 	],
-	"no_antialiasing": false,
-	"image": "characters/libing",
-	"position": [
-		0,
-		270
+	"camera_position": [
+		40,
+		0
 	],
-	"healthicon": "libing",
 	"flip_x": true,
 	"healthbar_colors": [
 		255,
 		255,
 		255
 	],
-	"camera_position": [
-		40,
-		0
+	"healthicon": "libing",
+	"image": "characters/libing",
+	"no_antialiasing": false,
+	"position": [
+		0,
+		190
 	],
-	"sing_duration": 4,
-	"scale": 1
+	"scale": 1,
+	"sing_duration": 4
 }
