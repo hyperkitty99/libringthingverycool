@@ -1240,7 +1240,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if (clicked) {
-			FlxTween.tween(building, {y: 445}, 15, {ease: FlxEase.linear, onComplete: function (twn:FlxTween) {
+			modchartTweens['dieBuilding'] = FlxTween.tween(building, {y: 445}, 15, {ease: FlxEase.linear, onComplete: function (twn:FlxTween) {
 				clicked = false;
 			}});
 
