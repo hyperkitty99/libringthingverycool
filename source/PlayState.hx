@@ -725,7 +725,6 @@ class PlayState extends MusicBeatState
 	var startTimer:FlxTimer;
 	var finishTimer:FlxTimer = null;
 
-	public var countdownReady:FlxSprite;
 	public var countdownSet:FlxSprite;
 	public var countdownGo:FlxSprite;
 	public static var startOnTime:Float = 0;
@@ -733,15 +732,13 @@ class PlayState extends MusicBeatState
 	function cacheCountdown()
 	{
 		var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-		introAssets.set('default', ['ready', 'set', 'go']);
+		introAssets.set('default', ['yourself', 'sheit']);
 
 		var introAlts:Array<String> = introAssets.get('default');
 		
 		for (asset in introAlts)
 			Paths.image(asset);
-		
-		Paths.sound('intro3' + introSoundsSuffix);
-		Paths.sound('intro2' + introSoundsSuffix);
+
 		Paths.sound('intro1' + introSoundsSuffix);
 		Paths.sound('introGo' + introSoundsSuffix);
 	}
@@ -764,9 +761,7 @@ class PlayState extends MusicBeatState
 			clearNotesBefore(startOnTime);
 			setSongTime(startOnTime - 350);
 			return;
-		}
-		else if (skipCountdown)
-		{
+		} else if (skipCountdown) {
 			setSongTime(0);
 			return;
 		}
@@ -781,70 +776,43 @@ class PlayState extends MusicBeatState
 				dad.dance();
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			introAssets.set('default', ['ready', 'set', 'go']);
+			introAssets.set('default', ['yourself', 'sheit']);
 
 			var introAlts:Array<String> = introAssets.get('default');
-			var antialias:Bool = true;
 
 			switch (swagCounter)
 			{
 				case 0:
-					FlxG.sound.play(Paths.sound('intro3' + introSoundsSuffix), 0.6);
-				case 1:
-					countdownReady = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
-					countdownReady.cameras = [camHUD];
-					countdownReady.scrollFactor.set();
-					countdownReady.updateHitbox();
-
-					countdownReady.screenCenter();
-					countdownReady.antialiasing = antialias;
-					insert(members.indexOf(notes), countdownReady);
-					FlxTween.tween(countdownReady, {/*y: countdownReady.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							remove(countdownReady);
-							countdownReady.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('intro2' + introSoundsSuffix), 0.6);
-				case 2:
 					countdownSet = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
 					countdownSet.cameras = [camHUD];
 					countdownSet.scrollFactor.set();
 
 					countdownSet.screenCenter();
-					countdownSet.antialiasing = antialias;
+					countdownSet.antialiasing = true;
 					insert(members.indexOf(notes), countdownSet);
-					FlxTween.tween(countdownSet, {/*y: countdownSet.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
+					FlxTween.tween(countdownSet, {alpha: 0}, Conductor.crochet / 1000, {ease: FlxEase.cubeInOut, onComplete: function(twn:FlxTween) {
 							remove(countdownSet);
 							countdownSet.destroy();
 						}
 					});
 					FlxG.sound.play(Paths.sound('intro1' + introSoundsSuffix), 0.6);
-				case 3:
-					countdownGo = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
+				case 1:
+					countdownGo = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 					countdownGo.cameras = [camHUD];
 					countdownGo.scrollFactor.set();
 
 					countdownGo.updateHitbox();
 
 					countdownGo.screenCenter();
-					countdownGo.antialiasing = antialias;
+					countdownGo.antialiasing = true;
 					insert(members.indexOf(notes), countdownGo);
-					FlxTween.tween(countdownGo, {/*y: countdownGo.y + 100,*/ alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
+					FlxTween.tween(countdownGo, {alpha: 0}, Conductor.crochet / 1000, {ease: FlxEase.cubeInOut, onComplete: function(twn:FlxTween) {
 							remove(countdownGo);
 							countdownGo.destroy();
 						}
 					});
 					FlxG.sound.play(Paths.sound('introGo' + introSoundsSuffix), 0.6);
-				case 4:
+				case 2:
 			}
 
 			swagCounter += 1;
