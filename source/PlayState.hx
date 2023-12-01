@@ -745,7 +745,7 @@ class PlayState extends MusicBeatState
 		generateStaticArrows();
 
 		startedCountdown = true;
-		Conductor.songPosition = -Conductor.crochet * 5;
+		Conductor.songPosition = -Conductor.crochet * 3;
 
 		var swagCounter:Int = 0;
 
