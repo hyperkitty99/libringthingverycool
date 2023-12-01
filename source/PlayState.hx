@@ -259,6 +259,9 @@ class PlayState extends MusicBeatState
 			'NOTE_RIGHT'
 		];
 
+		var cursor:FlxSprite = new FlxSprite().loadGraphic(Paths.image('custom'));
+		FlxG.mouse.load(cursor.pixels, 0.35, 0, 0);
+
 		var rating:Rating = new Rating('shit');
 		rating.hitWindow = 1;
 		rating.score = 50;
@@ -1240,7 +1243,7 @@ class PlayState extends MusicBeatState
 		}
 
 		if (clicked) {
-			modchartTweens['dieBuilding'] = FlxTween.tween(building, {y: 445}, 15, {ease: FlxEase.linear, onComplete: function (twn:FlxTween) {
+		    FlxTween.tween(building, {y: 445}, 15, {ease: FlxEase.linear, onComplete: function (twn:FlxTween) {
 				clicked = false;
 			}});
 
