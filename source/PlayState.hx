@@ -1398,6 +1398,7 @@ class PlayState extends MusicBeatState
 					if (Conductor.songPosition >= opponentsNotes[0][0]) {
 						dad.playAnim(singAnimations[Std.int(opponentsNotes[0][1] % 4)], true);
 						dad.holdTimer = -opponentsNotes[0][2];
+						vocals.volume = 1;
 
 						opponentsNotes.shift();
 					}
@@ -2300,9 +2301,7 @@ class PlayState extends MusicBeatState
 			} else {
 				var spr = strumLineNotes.members[note.noteData];
 				if(spr != null)
-				{
 					spr.playAnim('confirm', true);
-				}
 			}
 			note.wasGoodHit = true;
 			vocals.volume = 1;
