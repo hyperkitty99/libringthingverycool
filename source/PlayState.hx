@@ -377,41 +377,41 @@ class PlayState extends MusicBeatState
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
 		var sky:ParallaxSprite = new ParallaxSprite(0, -200, Paths.image('bg/sky')).fixate(0, 0, 0.2, 0.2, 0.2, 0.2, "horizontal");
-		sky.antialiasing = ClientPrefs.true;
+		sky.antialiasing = true;
 		sky.scale.set(1.4, 1.4);
 		add(sky);
 
 		var backCloud2:FlxSprite = new FlxSprite(350, 300).loadGraphic(Paths.image('bg/backCloud2'));
-		backCloud2.antialiasing = ClientPrefs.true;
+		backCloud2.antialiasing = true;
 		backCloud2.scrollFactor.set(0.35, 0.35);
 		add(backCloud2);
 
 		var building:FlxSprite = new FlxSprite(750, 225).loadGraphic(Paths.image('bg/building'));
-		building.antialiasing = ClientPrefs.true;
+		building.antialiasing = true;
 		building.scrollFactor.set(0.45, 0.45);
 		add(building);
 
 		var backCloud:FlxSprite = new FlxSprite(275, 350).loadGraphic(Paths.image('bg/backCloud'));
-		backCloud.antialiasing = ClientPrefs.true;
+		backCloud.antialiasing = true;
 		backCloud.scrollFactor.set(0.5, 0.5);
 		add(backCloud);
 
 		var frontCloud:FlxSprite = new FlxSprite(200, 350).loadGraphic(Paths.image('bg/frontCloud'));
-		frontCloud.antialiasing = ClientPrefs.true;
+		frontCloud.antialiasing = true;
 		frontCloud.scrollFactor.set(0.6, 0.6);
 		add(frontCloud);
 
 		var frontCloud2:FlxSprite = new FlxSprite(850, 200).loadGraphic(Paths.image('bg/frontCloud2'));
-		frontCloud2.antialiasing = ClientPrefs.true;
+		frontCloud2.antialiasing = true;
 		frontCloud2.scrollFactor.set(0.6, 0.6);
 		add(frontCloud2);
 
 		var window:ParallaxSprite = new ParallaxSprite(-425, -75, Paths.image('bg/window')).fixate(0, 0, 0.815, 0.8, 0.815, 0.8, "horizontal");
-		window.antialiasing = ClientPrefs.true;
+		window.antialiasing = true;
 		add(window);
 
 		var floor:ParallaxSprite = new ParallaxSprite(-485, 525, Paths.image('bg/floor')).fixate(0, 0, 0.8, 0.8, 1.4, 1.4, "horizontal");
-		floor.antialiasing = ClientPrefs.true;
+		floor.antialiasing = true;
 		add(floor);
 
 		add(gfGroup); //Needed for blammed lights //GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD 
@@ -781,7 +781,7 @@ class PlayState extends MusicBeatState
 			introAssets.set('default', ['ready', 'set', 'go']);
 
 			var introAlts:Array<String> = introAssets.get('default');
-			var antialias:Bool = ClientPrefs.true;
+			var antialias:Bool = true;
 
 			switch (swagCounter)
 			{
@@ -1868,9 +1868,9 @@ class PlayState extends MusicBeatState
 		insert(members.indexOf(strumLineNotes), rating);
 
 		rating.setGraphicSize(Std.int(rating.width * 0.7));
-		rating.antialiasing = ClientPrefs.true;
+		rating.antialiasing = true;
 		comboSpr.setGraphicSize(Std.int(comboSpr.width * 0.7));
-		comboSpr.antialiasing = ClientPrefs.true;
+		comboSpr.antialiasing = true;
 
 		comboSpr.updateHitbox();
 		rating.updateHitbox();
@@ -1910,7 +1910,7 @@ class PlayState extends MusicBeatState
 			numScore.x += ClientPrefs.comboOffset[2];
 			numScore.y -= ClientPrefs.comboOffset[3];
 
-			numScore.antialiasing = ClientPrefs.true;
+			numScore.antialiasing = true;
 			numScore.setGraphicSize(Std.int(numScore.width * 0.5));
 			numScore.updateHitbox();
 
