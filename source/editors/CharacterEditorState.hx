@@ -32,7 +32,6 @@ import Character;
 import flixel.system.debug.interaction.tools.Pointer.GraphicCursorCross;
 import lime.system.Clipboard;
 import flixel.animation.FlxAnimation;
-import flixel_5_3_1.ParallaxSprite as ParallaxSprite;
 
 #if MODS_ALLOWED
 import sys.FileSystem;
@@ -262,43 +261,13 @@ class CharacterEditorState extends MusicBeatState
 			bgTrees.updateHitbox();
 			changeBGbutton.text = "Regular BG";
 		} else {
-			// var bgwall:ParallaxSprite = new ParallaxSprite( -500, -600, Paths.image('stages/stage/BGWall')).fixate(0, 0, 0.57, 0.57, 0.57, 0.57, "horizontal");
-			// bgwall.antialiasing = ClientPrefs.globalAntialiasing;
-			// add(bgwall);
+			var bg:BGSprite = new BGSprite('stageback', -600 + OFFSET_X - playerXDifference, -300, 0.9, 0.9);
+			bgLayer.add(bg);
 
-			// var middleTable3:FlxSprite = new FlxSprite(585, 290).loadGraphic(Paths.image('stages/stage/BackTable'));
-			// middleTable3.antialiasing = ClientPrefs.globalAntialiasing;
-			// middleTable3.scrollFactor.set(0.665, 0.65);
-			// add(middleTable3);
-
-			// var middleTable2:FlxSprite = new FlxSprite(935, 290).loadGraphic(Paths.image('stages/stage/BackTable'));
-			// middleTable2.antialiasing = ClientPrefs.globalAntialiasing;
-			// middleTable2.scrollFactor.set(0.65, 0.65);
-			// add(middleTable2);
-
-			// var middleTable1:FlxSprite = new FlxSprite(235, 290).loadGraphic(Paths.image('stages/stage/BackTable'));
-			// middleTable1.antialiasing = ClientPrefs.globalAntialiasing;
-			// middleTable1.scrollFactor.set(0.655, 0.65);
-			// add(middleTable1);
-
-			// var box:FlxSprite = new FlxSprite(255, 175).loadGraphic(Paths.image('stages/stage/Box'));
-			// box.antialiasing = ClientPrefs.globalAntialiasing;
-			// box.scrollFactor.set(0.655, 0.65);
-			// add(box);
-
-			// var frontTable2:FlxSprite = new FlxSprite(400, 375).loadGraphic(Paths.image('stages/stage/Table'));
-			// frontTable2.antialiasing = ClientPrefs.globalAntialiasing;
-			// frontTable2.scrollFactor.set(0.785, 0.785);
-			// add(frontTable2);
-
-			var window:ParallaxSprite = new ParallaxSprite(-290, -275, Paths.image('bg/window')).fixate(0, 0, 0.98, 0.9825, 0.98, 0.9825, "horizontal");
-			window.antialiasing = ClientPrefs.globalAntialiasing;
-			add(window);
-
-			var floor:ParallaxSprite = new ParallaxSprite(-1025, 650, Paths.image('bg/floor')).fixate(0, 0, 0.8, 0.8, 1.4, 1.4, "horizontal");
-			floor.antialiasing = ClientPrefs.globalAntialiasing;
-			add(floor);
-
+			var stageFront:BGSprite = new BGSprite('stagefront', -650 + OFFSET_X - playerXDifference, 500, 0.9, 0.9);
+			stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+			stageFront.updateHitbox();
+			bgLayer.add(stageFront);
 			changeBGbutton.text = "Pixel BG";
 		}
 	}

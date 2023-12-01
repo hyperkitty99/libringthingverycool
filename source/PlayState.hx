@@ -51,6 +51,7 @@ import flixel.util.FlxSave;
 import flixel.animation.FlxAnimationController;
 import StageData;
 import Conductor.Rating;
+import flixel_5_3_1.ParallaxSprite as ParallaxSprite;
 
 #if sys
 import sys.FileSystem;
@@ -375,32 +376,51 @@ class PlayState extends MusicBeatState
 		dadGroup = new FlxSpriteGroup(DAD_X, DAD_Y);
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
-		var bg:BGSprite = new BGSprite('stageback', -600, -200, 0.9, 0.9);
-		add(bg);
+		var sky:ParallaxSprite = new ParallaxSprite(0, -200, Paths.image('bg/sky')).fixate(0, 0, 0.2, 0.2, 0.2, 0.2, "horizontal");
+		sky.antialiasing = ClientPrefs.globalAntialiasing;
+		sky.scale.set(1.4, 1.4);
+		add(sky);
 
-		var stageFront:BGSprite = new BGSprite('stagefront', -650, 600, 0.9, 0.9);
-		stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-		stageFront.updateHitbox();
-		add(stageFront);
-		var stageLight:BGSprite = new BGSprite('stage_light', -125, -100, 0.9, 0.9);
-		stageLight.setGraphicSize(Std.int(stageLight.width * 1.1));
-		stageLight.updateHitbox();
-		add(stageLight);
-		var stageLight:BGSprite = new BGSprite('stage_light', 1225, -100, 0.9, 0.9);
-		stageLight.setGraphicSize(Std.int(stageLight.width * 1.1));
-		stageLight.updateHitbox();
-		stageLight.flipX = true;
-		add(stageLight);
+		var backCloud2:FlxSprite = new FlxSprite(350, 300).loadGraphic(Paths.image('bg/backCloud2'));
+		backCloud2.antialiasing = ClientPrefs.globalAntialiasing;
+		backCloud2.scrollFactor.set(0.35, 0.35);
+		add(backCloud2);
 
-		var stageCurtains:BGSprite = new BGSprite('stagecurtains', -500, -300, 1.3, 1.3);
-		stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-		stageCurtains.updateHitbox();
-		add(stageCurtains);
+		var building:FlxSprite = new FlxSprite(750, 225).loadGraphic(Paths.image('bg/building'));
+		building.antialiasing = ClientPrefs.globalAntialiasing;
+		building.scrollFactor.set(0.45, 0.45);
+		add(building);
 
-		add(gfGroup); //Needed for blammed lights
+		var backCloud:FlxSprite = new FlxSprite(275, 350).loadGraphic(Paths.image('bg/backCloud'));
+		backCloud.antialiasing = ClientPrefs.globalAntialiasing;
+		backCloud.scrollFactor.set(0.5, 0.5);
+		add(backCloud);
+
+		var frontCloud:FlxSprite = new FlxSprite(200, 350).loadGraphic(Paths.image('bg/frontCloud'));
+		frontCloud.antialiasing = ClientPrefs.globalAntialiasing;
+		frontCloud.scrollFactor.set(0.6, 0.6);
+		add(frontCloud);
+
+		var frontCloud2:FlxSprite = new FlxSprite(850, 200).loadGraphic(Paths.image('bg/frontCloud2'));
+		frontCloud2.antialiasing = ClientPrefs.globalAntialiasing;
+		frontCloud2.scrollFactor.set(0.6, 0.6);
+		add(frontCloud2);
+
+		var window:ParallaxSprite = new ParallaxSprite(-425, -75, Paths.image('bg/window')).fixate(0, 0, 0.815, 0.8, 0.815, 0.8, "horizontal");
+		window.antialiasing = ClientPrefs.globalAntialiasing;
+		add(window);
+
+		var floor:ParallaxSprite = new ParallaxSprite(-485, 525, Paths.image('bg/floor')).fixate(0, 0, 0.8, 0.8, 1.4, 1.4, "horizontal");
+		floor.antialiasing = ClientPrefs.globalAntialiasing;
+		add(floor);
+
+		add(gfGroup); //Needed for blammed lights //GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD 
 
 		add(dadGroup);
 		add(boyfriendGroup);
+
+		dadGroup.scrollFactor.set(1.175, 1.2);
+		boyfriendGroup.scrollFactor.set(1.15, 1.2);
 
 		var gfVersion:String = SONG.gfVersion;
 		if(gfVersion == null || gfVersion.length < 1)

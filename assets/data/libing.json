@@ -102,7 +102,7 @@
 	],
 	"camera_position": [
 		40,
-		0
+		25
 	],
 	"flip_x": true,
 	"healthbar_colors": [
@@ -114,8 +114,8 @@
 	"image": "characters/libing",
 	"no_antialiasing": false,
 	"position": [
-		0,
-		190
+		150,
+		100
 	],
 	"scale": 1,
 	"sing_duration": 4

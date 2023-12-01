@@ -58,7 +58,7 @@
 	],
 	"camera_position": [
 		40,
-		0
+		-100
 	],
 	"flip_x": false,
 	"healthbar_colors": [
@@ -70,8 +70,8 @@
 	"image": "characters/plink",
 	"no_antialiasing": false,
 	"position": [
-		0,
-		500
+		100,
+		415
 	],
 	"scale": 1,
 	"sing_duration": 4
