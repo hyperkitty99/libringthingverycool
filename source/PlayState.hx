@@ -1272,15 +1272,12 @@ class PlayState extends MusicBeatState
 		}
 
 		if (clicked) {
-			if (building != null) {
-				FlxTween.tween(building, {y: 665}, 15, {ease: FlxEase.linear, onComplete: function (twn:FlxTween) {
-					clicked = false;
-					building.destroy();
-				}});
+			FlxTween.tween(building, {y: 445}, 15, {ease: FlxEase.linear, onComplete: function (twn:FlxTween) {
+				clicked = false;
+			}});
 
-				building.offset.x = FlxG.random.int(-2, 2);
-				building.offset.y = FlxG.random.int(-2, 2);
-			}
+			building.offset.x = FlxG.random.int(-2, 2);
+			building.offset.y = FlxG.random.int(-2, 2);
 		}
 		super.update(elapsed);
 
