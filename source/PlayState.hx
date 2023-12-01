@@ -227,6 +227,9 @@ class PlayState extends MusicBeatState
 	public static var lastCombo:FlxSprite;
 	public static var lastScore:Array<FlxSprite> = [];
 
+	var clicked:Bool = false;
+	var building:FlxSprite;
+
 	override public function create()
 	{
 		FlxG.game.focusLostFramerate = 60;
@@ -386,7 +389,7 @@ class PlayState extends MusicBeatState
 		backCloud2.scrollFactor.set(0.35, 0.35);
 		add(backCloud2);
 
-		var building:FlxSprite = new FlxSprite(750, 225).loadGraphic(Paths.image('bg/building'));
+		building = new FlxSprite(750, 225).loadGraphic(Paths.image('bg/building'));
 		building.antialiasing = true;
 		building.scrollFactor.set(0.45, 0.45);
 		add(building);
@@ -517,11 +520,11 @@ class PlayState extends MusicBeatState
 		healthBarBG.sprTracker = healthBar;
 
 		iconP1 = new HealthIcon(boyfriend.healthIcon, true);
-		iconP1.y = healthBar.y - 75;
+		iconP1.y = healthBar.y - 45;
 		add(iconP1);
 
 		iconP2 = new HealthIcon(dad.healthIcon, false);
-		iconP2.y = healthBar.y - 75;
+		iconP2.y = healthBar.y - 45;
 		add(iconP2);
 		reloadHealthBarColors();
 
@@ -1252,6 +1255,9 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
+		if (!clicked)
+			if (FlxG.mouse.overlaps(building)) if(FlxG.mouse.pressed) clicked = true;
+
 		if(!inCutscene) {
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 2.4 * cameraSpeed * playbackRate, 0, 1);
 			camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
@@ -1265,6 +1271,17 @@ class PlayState extends MusicBeatState
 			}
 		}
 
+		if (clicked) {
+			if (building != null) {
+				FlxTween.tween(building, {y: 665}, 15, {ease: FlxEase.linear, onComplete: function (twn:FlxTween) {
+					clicked = false;
+					building.destroy();
+				}});
+
+				building.offset.x = FlxG.random.int(-2, 2);
+				building.offset.y = FlxG.random.int(-2, 2);
+			}
+		}
 		super.update(elapsed);
 
 		if(botplayTxt.visible) {
@@ -1356,12 +1373,6 @@ class PlayState extends MusicBeatState
 		FlxG.watch.addQuick("beatShit", curBeat);
 		FlxG.watch.addQuick("stepShit", curStep);
 
-		// RESET = Quick Game Over Screen
-		if (!ClientPrefs.noReset && controls.RESET && canReset && !inCutscene && startedCountdown && !endingSong)
-		{
-			health = 0;
-			trace("RESET = True");
-		}
 		doDeathCheck();
 
 		if (unspawnNotes[0] != null)
@@ -1792,7 +1803,7 @@ class PlayState extends MusicBeatState
 
 	private function popUpScore(note:Note = null):Void
 	{
-		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition + ClientPrefs.ratingOffset);
+		var noteDiff:Float = Math.abs(note.strumTime - Conductor.songPosition);
 		//trace(noteDiff, ' ' + Math.abs(note.strumTime - Conductor.songPosition));
 
 		// boyfriend.playAnim('hey');

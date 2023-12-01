@@ -42,24 +42,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			false); //Default value
 		addOption(option);
 
-		var option:Option = new Option('Disable Reset Button',
-			"If checked, pressing Reset won't do anything.",
-			'noReset',
-			'bool',
-			false);
-		addOption(option);
-
-		var option:Option = new Option('Rating Offset',
-			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
-			'ratingOffset',
-			'int',
-			0);
-		option.displayFormat = '%vms';
-		option.scrollSpeed = 20;
-		option.minValue = -30;
-		option.maxValue = 30;
-		addOption(option);
-
 		var option:Option = new Option('Safe Frames',
 			'Changes how many frames you have for\nhitting a note earlier or late.',
 			'safeFrames',
