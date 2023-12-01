@@ -15,8 +15,7 @@ import flixel.util.FlxColor;
 import flixel.FlxCamera;
 import flixel.util.FlxStringUtil;
 
-class PauseSubState extends MusicBeatSubstate
-{
+class PauseSubState extends MusicBeatSubstate {
 	var grpMenuShit:FlxTypedGroup<Alphabet>;
 
 	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
@@ -24,8 +23,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	var pauseMusic:FlxSound;
 
-	public function new(x:Float, y:Float)
-	{
+	public function new(x:Float, y:Float) {
 		super();
 		pauseMusic = new FlxSound();
 		pauseMusic.loadEmbedded(Paths.music('veryCoolPauseMusic'), true, true);
@@ -50,8 +48,7 @@ class PauseSubState extends MusicBeatSubstate
 
 	var holdTime:Float = 0;
 	var cantUnpause:Float = 0.1;
-	override function update(elapsed:Float)
-	{
+	override function update(elapsed:Float) {
 		cantUnpause -= elapsed;
 		super.update(elapsed);
 
@@ -66,10 +63,8 @@ class PauseSubState extends MusicBeatSubstate
 
 		var daSelected:String = menuItems[curSelected];
 
-		if (accepted)
-		{
-			switch (daSelected)
-			{
+		if (accepted) {
+			switch (daSelected) {
 				case "Resume":
 					close();
 				case "Restart Song":
@@ -79,32 +74,21 @@ class PauseSubState extends MusicBeatSubstate
 		}
 	}
 
-	public static function restartSong(noTrans:Bool = false)
-	{
+	public static function restartSong() {
 		PlayState.instance.paused = true; // For lua
 		FlxG.sound.music.volume = 0;
 		PlayState.instance.vocals.volume = 0;
 
-		if(noTrans)
-		{
-			FlxTransitionableState.skipNextTransOut = true;
-			FlxG.resetState();
-		}
-		else
-		{
-			MusicBeatState.resetState();
-		}
+		MusicBeatState.resetState();
 	}
 
-	override function destroy()
-	{
+	override function destroy() {
 		pauseMusic.destroy();
 
 		super.destroy();
 	}
 
-	function changeSelection(change:Int = 0):Void
-	{
+	function changeSelection(change:Int = 0):Void {
 		curSelected += change;
 
 		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
@@ -116,20 +100,13 @@ class PauseSubState extends MusicBeatSubstate
 
 		var bullShit:Int = 0;
 
-		for (item in grpMenuShit.members)
-		{
+		for (item in grpMenuShit.members) {
 			item.targetY = bullShit - curSelected;
 			bullShit++;
 
 			item.alpha = 0.6;
-			// item.setGraphicSize(Std.int(item.width * 0.8));
 
-			if (item.targetY == 0)
-			{
-				item.alpha = 1;
-				// item.setGraphicSize(Std.int(item.width));
-
-			}
+			if (item.targetY == 0) item.alpha = 1;
 		}
 	}
 
