@@ -377,41 +377,41 @@ class PlayState extends MusicBeatState
 		gfGroup = new FlxSpriteGroup(GF_X, GF_Y);
 
 		var sky:ParallaxSprite = new ParallaxSprite(0, -200, Paths.image('bg/sky')).fixate(0, 0, 0.2, 0.2, 0.2, 0.2, "horizontal");
-		sky.antialiasing = ClientPrefs.globalAntialiasing;
+		sky.antialiasing = ClientPrefs.true;
 		sky.scale.set(1.4, 1.4);
 		add(sky);
 
 		var backCloud2:FlxSprite = new FlxSprite(350, 300).loadGraphic(Paths.image('bg/backCloud2'));
-		backCloud2.antialiasing = ClientPrefs.globalAntialiasing;
+		backCloud2.antialiasing = ClientPrefs.true;
 		backCloud2.scrollFactor.set(0.35, 0.35);
 		add(backCloud2);
 
 		var building:FlxSprite = new FlxSprite(750, 225).loadGraphic(Paths.image('bg/building'));
-		building.antialiasing = ClientPrefs.globalAntialiasing;
+		building.antialiasing = ClientPrefs.true;
 		building.scrollFactor.set(0.45, 0.45);
 		add(building);
 
 		var backCloud:FlxSprite = new FlxSprite(275, 350).loadGraphic(Paths.image('bg/backCloud'));
-		backCloud.antialiasing = ClientPrefs.globalAntialiasing;
+		backCloud.antialiasing = ClientPrefs.true;
 		backCloud.scrollFactor.set(0.5, 0.5);
 		add(backCloud);
 
 		var frontCloud:FlxSprite = new FlxSprite(200, 350).loadGraphic(Paths.image('bg/frontCloud'));
-		frontCloud.antialiasing = ClientPrefs.globalAntialiasing;
+		frontCloud.antialiasing = ClientPrefs.true;
 		frontCloud.scrollFactor.set(0.6, 0.6);
 		add(frontCloud);
 
 		var frontCloud2:FlxSprite = new FlxSprite(850, 200).loadGraphic(Paths.image('bg/frontCloud2'));
-		frontCloud2.antialiasing = ClientPrefs.globalAntialiasing;
+		frontCloud2.antialiasing = ClientPrefs.true;
 		frontCloud2.scrollFactor.set(0.6, 0.6);
 		add(frontCloud2);
 
 		var window:ParallaxSprite = new ParallaxSprite(-425, -75, Paths.image('bg/window')).fixate(0, 0, 0.815, 0.8, 0.815, 0.8, "horizontal");
-		window.antialiasing = ClientPrefs.globalAntialiasing;
+		window.antialiasing = ClientPrefs.true;
 		add(window);
 
 		var floor:ParallaxSprite = new ParallaxSprite(-485, 525, Paths.image('bg/floor')).fixate(0, 0, 0.8, 0.8, 1.4, 1.4, "horizontal");
-		floor.antialiasing = ClientPrefs.globalAntialiasing;
+		floor.antialiasing = ClientPrefs.true;
 		add(floor);
 
 		add(gfGroup); //Needed for blammed lights //GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD GET OUT OF MY HEAD 
@@ -581,7 +581,6 @@ class PlayState extends MusicBeatState
 		updateScore();
 
 		//PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
-		if(ClientPrefs.hitsoundVolume > 0) precacheList.set('hitsound', 'sound');
 		precacheList.set('missnote1', 'sound');
 		precacheList.set('missnote2', 'sound');
 		precacheList.set('missnote3', 'sound');
@@ -782,7 +781,7 @@ class PlayState extends MusicBeatState
 			introAssets.set('default', ['ready', 'set', 'go']);
 
 			var introAlts:Array<String> = introAssets.get('default');
-			var antialias:Bool = ClientPrefs.globalAntialiasing;
+			var antialias:Bool = ClientPrefs.true;
 
 			switch (swagCounter)
 			{
@@ -1867,17 +1866,11 @@ class PlayState extends MusicBeatState
 		comboSpr.velocity.x += FlxG.random.int(1, 10) * playbackRate;
 
 		insert(members.indexOf(strumLineNotes), rating);
-		
-		if (!ClientPrefs.comboStacking)
-		{
-			if (lastRating != null) lastRating.kill();
-			lastRating = rating;
-		}
 
 		rating.setGraphicSize(Std.int(rating.width * 0.7));
-		rating.antialiasing = ClientPrefs.globalAntialiasing;
+		rating.antialiasing = ClientPrefs.true;
 		comboSpr.setGraphicSize(Std.int(comboSpr.width * 0.7));
-		comboSpr.antialiasing = ClientPrefs.globalAntialiasing;
+		comboSpr.antialiasing = ClientPrefs.true;
 
 		comboSpr.updateHitbox();
 		rating.updateHitbox();
@@ -1897,11 +1890,7 @@ class PlayState extends MusicBeatState
 		{
 			insert(members.indexOf(strumLineNotes), comboSpr);
 		}
-		if (!ClientPrefs.comboStacking)
-		{
-			if (lastCombo != null) lastCombo.kill();
-			lastCombo = comboSpr;
-		}
+
 		if (lastScore != null)
 		{
 			while (lastScore.length > 0)
@@ -1920,11 +1909,8 @@ class PlayState extends MusicBeatState
 
 			numScore.x += ClientPrefs.comboOffset[2];
 			numScore.y -= ClientPrefs.comboOffset[3];
-			
-			if (!ClientPrefs.comboStacking)
-				lastScore.push(numScore);
 
-			numScore.antialiasing = ClientPrefs.globalAntialiasing;
+			numScore.antialiasing = ClientPrefs.true;
 			numScore.setGraphicSize(Std.int(numScore.width * 0.5));
 			numScore.updateHitbox();
 
@@ -1987,7 +1973,7 @@ class PlayState extends MusicBeatState
 				var lastTime:Float = Conductor.songPosition;
 				Conductor.songPosition = inst.time;
 
-				var canMiss:Bool = !ClientPrefs.ghostTapping;
+				var canMiss:Bool = true;
 
 				// heavily based on my own code LOL if it aint broke dont fix it
 				var pressNotes:Array<Note> = [];
@@ -2181,8 +2167,6 @@ class PlayState extends MusicBeatState
 
 	function noteMissPress(direction:Int = 1):Void //You pressed a key when there was no notes to press for this key
 	{
-		if(ClientPrefs.ghostTapping) return; //fuck it
-
 		if (!boyfriend.stunned)
 		{
 			health -= 0.05 * healthLoss;
@@ -2219,11 +2203,6 @@ class PlayState extends MusicBeatState
 		if (!note.wasGoodHit)
 		{
 			if(cpuControlled && (note.ignoreNote || note.hitCausesMiss)) return;
-
-			if (ClientPrefs.hitsoundVolume > 0 && !note.hitsoundDisabled)
-			{
-				FlxG.sound.play(Paths.sound('hitsound'), ClientPrefs.hitsoundVolume);
-			}
 
 			if(note.hitCausesMiss) {
 				noteMiss(note);
@@ -2429,7 +2408,7 @@ class PlayState extends MusicBeatState
 				moveCameraSection();
 			}
 
-			if (camZooming && FlxG.camera.zoom < 1.35 && ClientPrefs.camZooms)
+			if (camZooming && FlxG.camera.zoom < 1.35)
 			{
 				FlxG.camera.zoom += 0.015 * camZoomingMult;
 				camHUD.zoom += 0.03 * camZoomingMult;
