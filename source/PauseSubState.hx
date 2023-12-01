@@ -76,7 +76,7 @@ class PauseSubState extends MusicBeatSubstate {
 
 	public static function restartSong() {
 		PlayState.instance.paused = true; // For lua
-		FlxG.sound.music.volume = 0;
+		if (FlxG.sound.music != null) FlxG.sound.music.volume = 0;
 		PlayState.instance.vocals.volume = 0;
 
 		MusicBeatState.resetState();
