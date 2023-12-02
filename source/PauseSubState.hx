@@ -14,17 +14,30 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxCamera;
 import flixel.util.FlxStringUtil;
+import openfl.filters.ShaderFilter;
 
+@:access(flixel.FlxGame._filters)
 class PauseSubState extends MusicBeatSubstate {
-	var grpMenuShit:FlxTypedGroup<Alphabet>;
+	var grpMenuShit:MenuList;
 
-	var menuItems:Array<String> = ['Resume', 'Restart Song', 'Exit to menu'];
+	public static final gaySexScale:Float = 2.88;
+
+	var menuItems:Array<String> = ['resume', 'restart', 'exit'];
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
 
+	static var killballs:HalftoneShader = new HalftoneShader();
+	static var ass:ShaderFilter = new ShaderFilter(killballs);
+
+	public static var songName:String = '';
+
 	public function new(x:Float, y:Float) {
+		killballs.scale.value = [10];
+		if (FlxG.game._filters == null) FlxG.game._filters = [];
+		FlxG.game._filters.push(ass);
 		super();
+
 		pauseMusic = new FlxSound();
 		pauseMusic.loadEmbedded(Paths.music('veryCoolPauseMusic'), true, true);
 		pauseMusic.volume = 0.6;
@@ -33,45 +46,74 @@ class PauseSubState extends MusicBeatSubstate {
 		FlxG.sound.list.add(pauseMusic);
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		bg.alpha = 0;
+		FlxTween.tween(bg, {alpha: 0.6}, 0.6, {ease: FlxEase.expoOut});
+		bg.alpha = 1;
 		bg.scrollFactor.set();
 		add(bg);
 
-		FlxTween.tween(bg, {alpha: 0.6}, 0.4, {ease: FlxEase.quartInOut});
+		var thingamabob:FlxSprite = new FlxSprite(0, 0, Paths.image('pause/selector'));
+		thingamabob.scrollFactor.set();
+		thingamabob.scale.scale(gaySexScale);
+		thingamabob.updateHitbox();
+		thingamabob.screenCenter(Y);
+		thingamabob.x -= FlxG.width;
+		FlxTween.tween(thingamabob, {x: 0}, 0.6, {ease: FlxEase.expoOut});
+		add(thingamabob);
 
-		grpMenuShit = new FlxTypedGroup<Alphabet>();
+		grpMenuShit = new MenuList(0, 0, VERTICAL(true));
+		grpMenuShit.moveWithCurSelection = true;
+		grpMenuShit.focused = true;
 		add(grpMenuShit);
 
-		regenMenu();
+		grpMenuShit.onSelect.add((sel) -> {
+			switch (menuItems[sel]) {
+				case "resume":
+					close();
+				case "restart":
+					restartSong();
+				case "exit":
+			}
+		});
+
+		for (i in 0...menuItems.length) {
+			var item = generateFunkyText();
+			item.animation.play(menuItems[i]);
+			grpMenuShit.add(item);
+		}
+		grpMenuShit.x = 180;
+		grpMenuShit.y = 320;
+		grpMenuShit.padding = 50;
+		grpMenuShit.moveDirection.x = 0.15;
 		cameras = [FlxG.cameras.list[FlxG.cameras.list.length - 1]];
+
+		var things:Array<String> = ['topleft', 'topright', 'bottomleft', 'bottomright'];
+		var thingAnchors:Array<Array<Float>> = [[0, 0], [1, 0], [0, 1], [1, 1]];
+		for (thing in 0...things.length) {
+			var thingsprite:FlxSprite = new FlxSprite(0, 0, Paths.image('pause/${things[thing]}thing'));
+			thingsprite.scrollFactor.set();
+			thingsprite.scale.scale(gaySexScale);
+			thingsprite.updateHitbox();
+
+			thingsprite.x = FlxG.width * thingAnchors[thing][0] - thingsprite.width * thingAnchors[thing][0];
+			add(thingsprite);
+			var gay:Float = FlxG.height * thingAnchors[thing][1] - thingsprite.height * thingAnchors[thing][1];
+			thingsprite.y = gay;
+			thingsprite.y += (thing <= 1 ? -FlxG.height : FlxG.height);
+			FlxTween.tween(thingsprite, {y: gay}, 0.6, {ease: FlxEase.expoOut, startDelay: thing / 10});
+		}
 	}
 
-	var holdTime:Float = 0;
-	var cantUnpause:Float = 0.1;
-	override function update(elapsed:Float) {
-		cantUnpause -= elapsed;
-		super.update(elapsed);
+	function generateFunkyText() {
+		var kill:FlxSprite = new FlxSprite(0, 0);
+		kill.loadGraphic(Paths.image('pause/options'), true, 0, 40);
+		kill.animation.add('restart', [0], 0);
+		kill.animation.add('resume', [1], 0);
+		kill.animation.add('exit', [2], 0);
+		kill.scrollFactor.set();
 
-		var upP = controls.UI_UP_P;
-		var downP = controls.UI_DOWN_P;
-		var accepted = controls.ACCEPT;
-
-		if (upP)
-			changeSelection(-1);
-		if (downP)
-			changeSelection(1);
-
-		var daSelected:String = menuItems[curSelected];
-
-		if (accepted) {
-			switch (daSelected) {
-				case "Resume":
-					close();
-				case "Restart Song":
-					restartSong();
-				case "Exit to menu":
-			}
-		}
+		kill.scale.scale(gaySexScale);
+		kill.updateHitbox();
+		return kill;
 	}
 
 	public static function restartSong() {
@@ -83,48 +125,9 @@ class PauseSubState extends MusicBeatSubstate {
 	}
 
 	override function destroy() {
+		FlxG.game._filters.remove(ass);
 		pauseMusic.destroy();
 
 		super.destroy();
-	}
-
-	function changeSelection(change:Int = 0):Void {
-		curSelected += change;
-
-		FlxG.sound.play(Paths.sound('scrollMenu'), 0.4);
-
-		if (curSelected < 0)
-			curSelected = menuItems.length - 1;
-		if (curSelected >= menuItems.length)
-			curSelected = 0;
-
-		var bullShit:Int = 0;
-
-		for (item in grpMenuShit.members) {
-			item.targetY = bullShit - curSelected;
-			bullShit++;
-
-			item.alpha = 0.6;
-
-			if (item.targetY == 0) item.alpha = 1;
-		}
-	}
-
-	function regenMenu():Void {
-		for (i in 0...grpMenuShit.members.length) {
-			var obj = grpMenuShit.members[0];
-			obj.kill();
-			grpMenuShit.remove(obj, true);
-			obj.destroy();
-		}
-
-		for (i in 0...menuItems.length) {
-			var item = new Alphabet(90, 320, menuItems[i], true);
-			item.isMenuItem = true;
-			item.targetY = i;
-			grpMenuShit.add(item);
-		}
-		curSelected = 0;
-		changeSelection();
 	}
 }
