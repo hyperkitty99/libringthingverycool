@@ -1668,7 +1668,7 @@ class PlayState extends MusicBeatState
 		var pos:Array<Float> = getCameraPosition(isDad);
 		camFollow.set(pos[0], pos[1]);
 		focusedOnDad = isDad;
-		defaultCamZoom = (isDad ? 1.5 : 1);
+		defaultCamZoom = (isDad ? 1.15 : 1);
 	}
 
 	function snapCamFollowToPos(x:Float, y:Float) {
