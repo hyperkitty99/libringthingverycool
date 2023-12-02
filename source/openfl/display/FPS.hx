@@ -3,24 +3,15 @@ package openfl.display;
 import flixel.util.FlxStringUtil;
 import openfl.Lib;
 import flixel.FlxG;
-import flixel.tweens.FlxEase;
 import flixel.util.FlxColor;
-import flixel.math.FlxMath;
-import openfl.Memory;
 import lime.system.System;
 import openfl.text.TextFormat;
 import openfl.text.TextField;
 import openfl.display.Sprite;
 
 class FPS extends Sprite {
-	//The current frame rate, expressed using frames-per-second
-
 	public var currentFPS(default, null):Int;
 
-	private var currentMemory:Float;
-	private var maxMemory:Float;
-
-	private var maxColor:FlxColor = 0xFFEC5454;
 	private var normalColor:FlxColor = 0xFFFFFFFF;
 	private var outlineColor:FlxColor = 0xFF000000;
 	public var baseText:TextField;
@@ -45,9 +36,7 @@ class FPS extends Sprite {
 		baseText.mouseEnabled = false;
 		baseText.width = FlxG.width;
 
-		currentFPS = 0;
-		currentMemory = 0;
-		maxMemory = 0;
+		currentFPS = -2147483647;
 
 		for (i in 0...outlineQuality) {
 			var otext:TextField = new TextField();
@@ -62,38 +51,15 @@ class FPS extends Sprite {
 
 		addChild(baseText);
 
-		text = "FPS: ";
-
-	}
-
-	// Event Handlers
-	private override function __enterFrame(deltaTime:Float):Void {
-		currentFPS = Math.floor(Math.max(1 / (deltaTime / 1000), 0)); // clamp the value so it doesent go to -2147483647 FPS
-
-
-		#if (gl_stats && !disable_cffi && (!html5 || !canvas))
-		text += "\ntotalDC: " + Context3DStats.totalDrawCalls();
-		text += "\nstageDC: " + Context3DStats.contextDrawCalls(DrawCallContext.STAGE);
-		text += "\nstage3DDC: " + Context3DStats.contextDrawCalls(DrawCallContext.STAGE3D);
-		#end
-
-		var stats:{currentMemory:Float, totalAllocated:Float, allocationCount:Float} = hl.Gc.stats();
-		currentMemory = stats.currentMemory;
-		if (currentMemory > maxMemory)
-			maxMemory = currentMemory;
-
-		text = 'FPS: ${currentFPS}\nMEM: ${FlxStringUtil.formatBytes(currentMemory)} / ${FlxStringUtil.formatBytes(maxMemory)}';
-
-		var mappedFPS = FlxMath.remapToRange(currentFPS, FlxG.drawFramerate, 0, 0, 1);
-
-		baseText.textColor = FlxColor.interpolate(normalColor, maxColor, FlxEase.cubeIn(mappedFPS));
+		text = 'FPS: ${currentFPS}';
+		baseText.textColor = normalColor;
 	}
 
 	private function set_text(value:String):String {
 		baseText.text = value;
-		for (text in outlineTexts) {
+		for (text in outlineTexts)
 			text.text = value;
-		}
+
 		return value;
 	}
 }
