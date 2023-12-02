@@ -341,13 +341,13 @@ class PlayState extends MusicBeatState
 			isPixelStage: false,
 
 			boyfriend: [770, 100],
-			girlfriend: [400, 130],
+			girlfriend: [770, 100],
 			opponent: [100, 100],
 			hide_girlfriend: true,
 
 			camera_boyfriend: [0, 0],
 			camera_opponent: [0, 0],
-			camera_girlfriend: [0, 0],
+			camera_girlfriend: [800, 410],
 			camera_speed: 1
 		};
 
@@ -1738,7 +1738,7 @@ class PlayState extends MusicBeatState
 		}
 
 		WeekData.loadTheFirstEnabledMod();
-		cancelMusicFadeTween();
+		// cancelMusicFadeTween();
 		if(FlxTransitionableState.skipNextTransIn) {
 			CustomFadeTransition.nextCamera = null;
 		}
