@@ -1346,11 +1346,11 @@ class PlayState extends MusicBeatState
 			// Conductor.lastSongPos = inst.time;
 		}
 
-		if (camZooming)
-		{
+		// if (camZooming)
+		// {
 			FlxG.camera.zoom = FlxMath.lerp(defaultCamZoom, FlxG.camera.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay * playbackRate), 0, 1));
 			camHUD.zoom = FlxMath.lerp(1, camHUD.zoom, CoolUtil.boundTo(1 - (elapsed * 3.125 * camZoomingDecay * playbackRate), 0, 1));
-		}
+		// }
 
 		FlxG.watch.addQuick("secShit", curSection);
 		FlxG.watch.addQuick("beatShit", curBeat);
@@ -1668,6 +1668,7 @@ class PlayState extends MusicBeatState
 		var pos:Array<Float> = getCameraPosition(isDad);
 		camFollow.set(pos[0], pos[1]);
 		focusedOnDad = isDad;
+		defaultCamZoom = (isDad ? 1.5 : 1);
 	}
 
 	function snapCamFollowToPos(x:Float, y:Float) {
@@ -2357,11 +2358,11 @@ class PlayState extends MusicBeatState
 				moveCameraSection();
 			}
 
-			if (camZooming && FlxG.camera.zoom < 1.35)
-			{
-				FlxG.camera.zoom += 0.015 * camZoomingMult;
-				camHUD.zoom += 0.03 * camZoomingMult;
-			}
+			// if (camZooming && FlxG.camera.zoom < 1.35)
+			// {
+			// 	FlxG.camera.zoom += 0.015 * camZoomingMult;
+			// 	camHUD.zoom += 0.03 * camZoomingMult;
+			// }
 
 			if (SONG.notes[curSection].changeBPM)
 				Conductor.changeBPM(SONG.notes[curSection].bpm);
