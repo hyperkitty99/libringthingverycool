@@ -337,7 +337,7 @@ class PlayState extends MusicBeatState
 
 		var stageData:StageFile = {
 			directory: "",
-			defaultZoom: 0.9,
+			defaultZoom: 1,
 			isPixelStage: false,
 
 			boyfriend: [770, 100],
