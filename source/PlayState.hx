@@ -460,7 +460,7 @@ class PlayState extends MusicBeatState
 
 		var player:Character = boyfriend;
 
-		var animToPlay:String = '';
+		var animToPlay:String = singAnimations[Std.int(Math.abs(note.noteData))];
 		var ghost:ParallaxSprite = bfGhost;
 		ghost.frames = player.frames;
 		ghost.animation.copyFrom(player.animation);
@@ -1692,7 +1692,7 @@ class PlayState extends MusicBeatState
 		var pos:Array<Float> = getCameraPosition(isDad);
 		camFollow.set(pos[0], pos[1]);
 		focusedOnDad = isDad;
-		defaultCamZoom = (isDad ? 0.5 : 0.2);
+		defaultCamZoom = (isDad ? 1.15 : 1);
 	}
 
 	function snapCamFollowToPos(x:Float, y:Float) {
