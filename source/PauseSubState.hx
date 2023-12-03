@@ -33,7 +33,7 @@ class PauseSubState extends MusicBeatSubstate {
 	public static var songName:String = '';
 
 	public function new(x:Float, y:Float) {
-		killballs.scale.value = [999];
+		killballs.scale.value = [10];
 		if (FlxG.game._filters == null) FlxG.game._filters = [];
 		FlxG.game._filters.push(ass);
 		super();
