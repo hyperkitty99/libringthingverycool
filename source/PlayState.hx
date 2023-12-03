@@ -471,7 +471,6 @@ class PlayState extends MusicBeatState
         }
 		bfShadow.flipY = true;
 		bfShadow.color = FlxColor.BLACK;
-		// bfShadow.scale.copyFrom(boyfriend.scale);
 		bfShadow.scrollFactor.set(1.5, 1.2);
 		addBehindBF(bfShadow);
 
@@ -1439,7 +1438,12 @@ class PlayState extends MusicBeatState
 					if (dad.animation.curAnim.name.startsWith('idle')) {
 						dadShadow.x = 160;
 						dadShadow.y = 785;
-					}			
+					}
+					
+					if (boyfriend.animation.curAnim.name.startsWith('idle')) {
+						bfShadow.x = 1110;
+						bfShadow.y = 800;
+					}
 
 					var fakeCrochet:Float = (60 / SONG.bpm) * 1000;
 					notes.forEachAlive(function(daNote:Note)
@@ -1712,7 +1716,7 @@ class PlayState extends MusicBeatState
 		var pos:Array<Float> = getCameraPosition(isDad);
 		camFollow.set(pos[0], pos[1]);
 		focusedOnDad = isDad;
-		defaultCamZoom = (isDad ? 0.7 : 0.7);
+		defaultCamZoom = (isDad ? 1.15 : 1);
 	}
 
 	function snapCamFollowToPos(x:Float, y:Float) {
@@ -2192,6 +2196,18 @@ class PlayState extends MusicBeatState
 		{
 			var animToPlay:String = singAnimations[Std.int(Math.abs(daNote.noteData))] + 'miss' + daNote.animSuffix;
 			char.playAnim(animToPlay, true);
+
+			switch(singAnimations[Std.int(Math.abs(daNote.noteData))] + 'miss') {
+				case 'singLEFTmiss':
+					bfShadow.x = 1060;
+				case 'singDOWNmiss':
+					bfShadow.x = 1105;
+				case 'singUPmiss':
+					bfShadow.x = 1130;
+					bfShadow.y = 795;
+				case 'singRIGHTmiss':
+					bfShadow.x = 1153;
+			}
 		}
 	}
 
@@ -2223,6 +2239,18 @@ class PlayState extends MusicBeatState
 
 			if(boyfriend.hasMissAnimations) {
 				boyfriend.playAnim(singAnimations[Std.int(Math.abs(direction))] + 'miss', true);
+
+				switch(singAnimations[Std.int(Math.abs(direction))] + 'miss') {
+					case 'singLEFTmiss':
+						bfShadow.x = 1060;
+					case 'singDOWNmiss':
+						bfShadow.x = 1105;
+					case 'singUPmiss':
+						bfShadow.x = 1130;
+						bfShadow.y = 795;
+					case 'singRIGHTmiss':
+						bfShadow.x = 1153;
+				}
 			}
 			vocals.volume = 0;
 		}
@@ -2281,6 +2309,18 @@ class PlayState extends MusicBeatState
 				{
 					boyfriend.playAnim(animToPlay + note.animSuffix, true);
 					boyfriend.holdTimer = 0;
+
+					switch(singAnimations[Std.int(Math.abs(note.noteData))]) {
+						case 'singLEFT':
+							bfShadow.x = 1060;
+						case 'singDOWN':
+							bfShadow.x = 1105;
+						case 'singUP':
+							bfShadow.x = 1130;
+							bfShadow.y = 795;
+						case 'singRIGHT':
+							bfShadow.x = 1153;
+					}
 				}
 
 				if(note.noteType == 'Hey!') {

@@ -1,7 +1,7 @@
 package;
 
 import flixel.addons.effects.FlxSkewedSprite;
-import flixel.FlxG;
+import flixel.FlxCamera;
 
 class Shadow extends FlxSkewedSprite {
 	public var dMulti:Float = 1;
@@ -29,4 +29,8 @@ class Shadow extends FlxSkewedSprite {
             skew.x = -(PlayState.camFollowPos.x - 1500) / (20 / dMulti);
 		// scale.y = -(PlayState.camFollowPos.y - y - height) / (500 / dMulti);
 	}
+
+	override public function isOnScreen(?camera:FlxCamera):Bool {
+        return true;
+    }
 }
