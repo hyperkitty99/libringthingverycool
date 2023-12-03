@@ -229,6 +229,7 @@ class PlayState extends MusicBeatState
 	var clicked:Bool = false;
 	var building:FlxSprite;
 	public var bfGhost:ParallaxSprite = null;
+	public var dadGhost:ParallaxSprite = null;
 
 	override public function create()
 	{
@@ -424,6 +425,12 @@ class PlayState extends MusicBeatState
 		bfGhost.color = FlxColor.BLACK;
 		add(bfGhost);
 
+		dadGhost = new ParallaxSprite();
+		dadGhost.fixate(0, 0, 0.8, 0.8, 1.4, 1.4, "horizontal");
+		dadGhost.flipY = true;
+		dadGhost.color = FlxColor.BLACK;
+		add(dadGhost);
+
 		add(gfGroup); //Needed for blammed lights
 
 		add(dadGroup);
@@ -458,19 +465,8 @@ class PlayState extends MusicBeatState
 		bfGhost.scale.copyFrom(boyfriend.scale);
 		bfGhost.updateHitbox();
 
-		var player:Character = boyfriend;
-
-		var animToPlay:String = singAnimations[Std.int(Math.abs(note.noteData))];
-		var ghost:ParallaxSprite = bfGhost;
-		ghost.frames = player.frames;
-		ghost.animation.copyFrom(player.animation);
-		ghost.x = player.x;
-		ghost.y = player.y;
-		ghost.animation.play(animToPlay, true);
-		ghost.offset.set(player.animOffsets.get(animToPlay)[0], player.animOffsets.get(animToPlay)[1]);
-		ghost.flipX = player.flipX;
-		ghost.flipY = true;
-		addBehindBF(ghost);
+		dadGhost.scale.copyFrom(dad.scale);
+		dadGhost.updateHitbox();
 
 		var camPos:FlxPoint = new FlxPoint(girlfriendCameraOffset[0], girlfriendCameraOffset[1]);
 		if(gf != null)
@@ -1779,6 +1775,29 @@ class PlayState extends MusicBeatState
 		eventNotes = [];
 	}
 
+	function createGhost(char:String, animToPlay:String) {
+		var ghost:ParallaxSprite = dadGhost;
+		var player:Character = dad;
+	
+		switch(char.toLowerCase().trim()){
+			case 'bf' | 'boyfriend' | '0':
+				ghost = bfGhost;
+				player = boyfriend;
+			case 'dad' | 'opponent' | '1':
+				ghost = dadGhost;
+				player = dad;
+		}
+		
+		ghost.frames = player.frames;
+		ghost.animation.copyFrom(player.animation);
+		ghost.x = player.x;
+		ghost.y = player.y;
+		ghost.animation.play(animToPlay, true);
+		ghost.offset.set(player.animOffsets.get(animToPlay)[0], player.animOffsets.get(animToPlay)[1]);
+		ghost.flipX = player.flipX;
+		ghost.flipY = true;
+	}
+
 	public var totalPlayed:Int = 0;
 	public var totalNotesHit:Float = 0.0;
 
@@ -2261,6 +2280,7 @@ class PlayState extends MusicBeatState
 				{
 					boyfriend.playAnim(animToPlay + note.animSuffix, true);
 					boyfriend.holdTimer = 0;
+					createGhost('bf', animToPlay);
 				}
 
 				if(note.noteType == 'Hey!') {
