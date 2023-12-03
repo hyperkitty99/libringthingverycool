@@ -818,7 +818,7 @@ class PlayState extends MusicBeatState
 				gf.dance();
 			if (tmr.loopsLeft % boyfriend.danceEveryNumBeats == 0 && boyfriend.animation.curAnim != null && !boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.stunned)
 				boyfriend.dance();
-			if (tmr.loopsLeft % dad.danceEveryNumBeats == 0 && dad.animation.curAnim != null && !dad.animation.curAnim.name.startsWith('sing') && !dad.stunned)
+			if (tmr.loopsLeft % dad.danceEveryNumBeats == 0 && dad.animation.curAnim != null && !dad.animation.curAnim.name.startsWith('sing') && !dad.stunned) 
 				dad.dance();
 
 			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
@@ -1420,19 +1420,26 @@ class PlayState extends MusicBeatState
 						dad.holdTimer = 0;
 						vocals.volume = 1;
 						updateCameraFollow();
+
 						switch(singAnimations[Std.int(opponentsNotes[0][1] % 4)]) {
 							case 'singLEFT':
 								dadShadow.x = 120;
 							case 'singDOWN':
 								dadShadow.x = 160;
 							case 'singUP':
-								dadShadow.x = 150;
-							case 'singRIGHT':
 								dadShadow.x = 170;
+								dadShadow.y = 770;
+							case 'singRIGHT':
+								dadShadow.x = 200;
 						}
 
 						opponentsNotes.shift();
 					}
+
+					if (dad.animation.curAnim.name.startsWith('idle')) {
+						dadShadow.x = 160;
+						dadShadow.y = 785;
+					}			
 
 					var fakeCrochet:Float = (60 / SONG.bpm) * 1000;
 					notes.forEachAlive(function(daNote:Note)
@@ -2377,10 +2384,8 @@ class PlayState extends MusicBeatState
 			gf.dance();
 		if (curBeat % boyfriend.danceEveryNumBeats == 0 && boyfriend.animation.curAnim != null && !boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.stunned)
 			boyfriend.dance();
-		if (curBeat % dad.danceEveryNumBeats == 0 && dad.animation.curAnim != null && !dad.animation.curAnim.name.startsWith('sing') && !dad.stunned) {
-			dadShadow.x = 160;
+		if (curBeat % dad.danceEveryNumBeats == 0 && dad.animation.curAnim != null && !dad.animation.curAnim.name.startsWith('sing') && !dad.stunned)
 			dad.dance();
-		}
 
 		lastBeatHit = curBeat;
 
