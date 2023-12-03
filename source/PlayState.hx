@@ -52,6 +52,9 @@ import flixel.animation.FlxAnimationController;
 import StageData;
 import Conductor.Rating;
 import flixel_5_3_1.ParallaxSprite as ParallaxSprite;
+import flixel.addons.effects.FlxSkewedSprite;
+import openfl.display.BitmapData;
+import openfl.geom.Matrix;
 
 #if sys
 import sys.FileSystem;
@@ -131,8 +134,8 @@ class PlayState extends MusicBeatState
 	private var strumLine:FlxSprite;
 
 	//Handles the new epic mega sexy cam code that i've done
-	public var camFollow:FlxPoint;
-	public var camFollowPos:FlxObject;
+	public static var camFollow:FlxPoint;
+	public static var camFollowPos:FlxObject;
 	private static var prevCamFollow:FlxPoint;
 	private static var prevCamFollowPos:FlxObject;
 
@@ -228,8 +231,8 @@ class PlayState extends MusicBeatState
 
 	var clicked:Bool = false;
 	var building:FlxSprite;
-	public var bfGhost:ParallaxSprite = null;
-	public var dadGhost:ParallaxSprite = null;
+	public var dadShadow:Shadow = null;
+	public var bfShadow:Shadow = null;
 
 	override public function create()
 	{
@@ -419,18 +422,6 @@ class PlayState extends MusicBeatState
 		floor.antialiasing = true;
 		add(floor);
 
-		bfGhost = new ParallaxSprite();
-		bfGhost.fixate(0, 0, 0.8, 0.8, 1.4, 1.4, "horizontal");
-		bfGhost.flipY = true;
-		bfGhost.color = FlxColor.BLACK;
-		add(bfGhost);
-
-		dadGhost = new ParallaxSprite();
-		dadGhost.fixate(0, 0, 0.8, 0.8, 1.4, 1.4, "horizontal");
-		dadGhost.flipY = true;
-		dadGhost.color = FlxColor.BLACK;
-		add(dadGhost);
-
 		add(gfGroup); //Needed for blammed lights
 
 		add(dadGroup);
@@ -458,15 +449,31 @@ class PlayState extends MusicBeatState
 		startCharacterPos(dad, true);
 		dadGroup.add(dad);
 
+		dadShadow = new Shadow(160, 785, null, 140, 1);
+        dad.animation.callback = (my, balls, itch) -> {
+	        dad.updateFramePixels();
+        	dadShadow.pixels = dad.framePixels;
+        }
+		dadShadow.flipY = true;
+		dadShadow.color = FlxColor.BLACK;
+		dadShadow.scale.copyFrom(dad.scale);
+		dadShadow.scrollFactor.set(1.25, 1.2);
+		addBehindDad(dadShadow);
+
 		boyfriend = new Boyfriend(0, 0, SONG.player1);
 		startCharacterPos(boyfriend);
 		boyfriendGroup.add(boyfriend);
 
-		bfGhost.scale.copyFrom(boyfriend.scale);
-		bfGhost.updateHitbox();
-
-		dadGhost.scale.copyFrom(dad.scale);
-		dadGhost.updateHitbox();
+		bfShadow = new Shadow(1110, 800, null, 140, 1, false);
+        boyfriend.animation.callback = (my, balls, itch) -> {
+	        boyfriend.updateFramePixels();
+        	bfShadow.pixels = boyfriend.framePixels;
+        }
+		bfShadow.flipY = true;
+		bfShadow.color = FlxColor.BLACK;
+		// bfShadow.scale.copyFrom(boyfriend.scale);
+		bfShadow.scrollFactor.set(1.5, 1.2);
+		addBehindBF(bfShadow);
 
 		var camPos:FlxPoint = new FlxPoint(girlfriendCameraOffset[0], girlfriendCameraOffset[1]);
 		if(gf != null)
@@ -1413,6 +1420,16 @@ class PlayState extends MusicBeatState
 						dad.holdTimer = 0;
 						vocals.volume = 1;
 						updateCameraFollow();
+						switch(singAnimations[Std.int(opponentsNotes[0][1] % 4)]) {
+							case 'singLEFT':
+								dadShadow.x = 120;
+							case 'singDOWN':
+								dadShadow.x = 160;
+							case 'singUP':
+								dadShadow.x = 150;
+							case 'singRIGHT':
+								dadShadow.x = 170;
+						}
 
 						opponentsNotes.shift();
 					}
@@ -1688,7 +1705,7 @@ class PlayState extends MusicBeatState
 		var pos:Array<Float> = getCameraPosition(isDad);
 		camFollow.set(pos[0], pos[1]);
 		focusedOnDad = isDad;
-		defaultCamZoom = (isDad ? 1.15 : 1);
+		defaultCamZoom = (isDad ? 0.7 : 0.7);
 	}
 
 	function snapCamFollowToPos(x:Float, y:Float) {
@@ -1773,29 +1790,6 @@ class PlayState extends MusicBeatState
 		}
 		unspawnNotes = [];
 		eventNotes = [];
-	}
-
-	function createGhost(char:String, animToPlay:String) {
-		var ghost:ParallaxSprite = dadGhost;
-		var player:Character = dad;
-	
-		switch(char.toLowerCase().trim()){
-			case 'bf' | 'boyfriend' | '0':
-				ghost = bfGhost;
-				player = boyfriend;
-			case 'dad' | 'opponent' | '1':
-				ghost = dadGhost;
-				player = dad;
-		}
-		
-		ghost.frames = player.frames;
-		ghost.animation.copyFrom(player.animation);
-		ghost.x = player.x;
-		ghost.y = player.y;
-		ghost.animation.play(animToPlay, true);
-		ghost.offset.set(player.animOffsets.get(animToPlay)[0], player.animOffsets.get(animToPlay)[1]);
-		ghost.flipX = player.flipX;
-		ghost.flipY = true;
 	}
 
 	public var totalPlayed:Int = 0;
@@ -2280,7 +2274,6 @@ class PlayState extends MusicBeatState
 				{
 					boyfriend.playAnim(animToPlay + note.animSuffix, true);
 					boyfriend.holdTimer = 0;
-					createGhost('bf', animToPlay);
 				}
 
 				if(note.noteType == 'Hey!') {
@@ -2384,8 +2377,10 @@ class PlayState extends MusicBeatState
 			gf.dance();
 		if (curBeat % boyfriend.danceEveryNumBeats == 0 && boyfriend.animation.curAnim != null && !boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.stunned)
 			boyfriend.dance();
-		if (curBeat % dad.danceEveryNumBeats == 0 && dad.animation.curAnim != null && !dad.animation.curAnim.name.startsWith('sing') && !dad.stunned)
+		if (curBeat % dad.danceEveryNumBeats == 0 && dad.animation.curAnim != null && !dad.animation.curAnim.name.startsWith('sing') && !dad.stunned) {
+			dadShadow.x = 160;
 			dad.dance();
+		}
 
 		lastBeatHit = curBeat;
 
@@ -2429,6 +2424,7 @@ class PlayState extends MusicBeatState
 		var target:Character = (focusedOnDad ? dad : boyfriend);
 		var animIndex:Int = singAnimations.indexOf(target.animation.curAnim.name);
 		if (animIndex == -1) return;
+
 		var pos:Array<Float> = getCameraPosition(focusedOnDad);
 		camFollow.x = pos[0] + fuckingkillyourself[animIndex][0] * 10;
 		camFollow.y = pos[1] + fuckingkillyourself[animIndex][1] * 10;
