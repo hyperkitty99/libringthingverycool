@@ -111,7 +111,7 @@ class Video extends FlxSprite {
 	var codec : hl.video.Aom.Codec;
 	var multithread : Bool;
 	var cache : FrameCache;
-	var frameCacheSize : Int = 20;
+	var frameCacheSize : Int = 1;
 	var stopThread = false;
 	var texture : BitmapData;
 	var playTime : Float;
@@ -124,11 +124,6 @@ class Video extends FlxSprite {
 	public var playing : Bool;
 	public var time(get, null) : Float;
 	public var loop(get, set) : Bool;
-
-	public function new(?parent) {
-		super();
-		smooth = true;
-	}
 
 	public dynamic function onError(msg:String) {
 	}

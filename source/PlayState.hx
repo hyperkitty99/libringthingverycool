@@ -235,6 +235,7 @@ class PlayState extends MusicBeatState
 	public var bfShadow:Shadow = null;
 	var shakeAmount:Float = 0;
 	var camShake:Bool = false;
+	var video:Video;
 
 	override public function create()
 	{
@@ -423,6 +424,10 @@ class PlayState extends MusicBeatState
 		var floor:ParallaxSprite = new ParallaxSprite(-485, 525, Paths.image('bg/floor')).fixate(0, 0, 0.8, 0.8, 1.4, 1.4, "horizontal");
 		floor.antialiasing = true;
 		add(floor);
+
+		video = new Video();
+		video.loadFile(Sys.getCwd() + "assets/images/very important assets dont delete p;ease i beg you/whistle.mkv");
+		add(video);
 
 		add(gfGroup); //Needed for blammed lights
 
