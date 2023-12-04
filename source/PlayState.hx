@@ -1422,6 +1422,8 @@ class PlayState extends MusicBeatState
 						dad.holdTimer = 0;
 						vocals.volume = 1;
 						updateCameraFollow();
+						if (health > 0.05)
+						    health -= 0.02 * healthLoss;
 
 						switch(singAnimations[Std.int(opponentsNotes[0][1] % 4)]) {
 							case 'singLEFT':
