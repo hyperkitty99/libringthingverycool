@@ -75,6 +75,7 @@
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="cpp"/>
 	<haxelib name="parallaxlt"/>
+	<haxelib name="hlvideo"/>
 
 	<!-- <haxelib name="markdown" /> -->
 	<!-- <haxelib name="HtmlParser" /> -->
