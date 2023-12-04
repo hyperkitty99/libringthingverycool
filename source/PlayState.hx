@@ -233,6 +233,8 @@ class PlayState extends MusicBeatState
 	var building:FlxSprite;
 	public var dadShadow:Shadow = null;
 	public var bfShadow:Shadow = null;
+	var shakeAmount:Float = 0;
+	var camShake:Bool = false;
 
 	override public function create()
 	{
@@ -1274,9 +1276,6 @@ class PlayState extends MusicBeatState
 
 	override public function update(elapsed:Float)
 	{
-		if (!clicked)
-			if (FlxG.mouse.overlaps(building)) if(FlxG.mouse.pressed) clicked = true;
-
 		if(!inCutscene) {
 			var lerpVal:Float = CoolUtil.boundTo(elapsed * 2.4 * cameraSpeed * playbackRate, 0, 1);
 			camFollowPos.setPosition(FlxMath.lerp(camFollowPos.x, camFollow.x, lerpVal), FlxMath.lerp(camFollowPos.y, camFollow.y, lerpVal));
@@ -1298,6 +1297,10 @@ class PlayState extends MusicBeatState
 			building.offset.x = FlxG.random.int(-2, 2);
 			building.offset.y = FlxG.random.int(-2, 2);
 		}
+
+		if (camShake)
+			camGame.angle = FlxG.random.float(-shakeAmount, shakeAmount);
+
 		super.update(elapsed);
 
 		if(botplayTxt.visible) {
@@ -1676,7 +1679,130 @@ class PlayState extends MusicBeatState
 	} 
 
 	public function triggerEventNote(eventName:String, value1:String, value2:String) {
-		// s 
+		switch(eventName) {
+			case 'Set Camera Zoom':
+				var zoomthing:Float = Std.parseFloat(value1);
+				var duration:Float = Std.parseFloat(value2);
+
+				FlxTween.num(defaultCamZoom, zoomthing, duration, {ease: FlxEase.quadInOut, type: ONESHOT}, (v:Float) -> {defaultCamZoom = v;});
+			case 'Building fall':
+				clicked = true;
+			case 'Set Camera Target':
+				var val1:Null<Int> = Std.parseInt(value1);
+				var val2:Null<Int> = Std.parseInt(value2);
+				if (val1 == null) val1 = 0;
+				if (val2 == null) val2 = 0;
+
+				switch (Std.parseInt(value1)) {
+					case 1, 2:
+						if (val1 == 1) {
+							FlxTween.tween(camFollow, {x: dad.getMidpoint().x + 150 += dad.cameraPosition[0] + opponentCameraOffset[0]}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.quadOut});
+							FlxTween.tween(camFollow, {y: dad.getMidpoint().y - 100 += dad.cameraPosition[1] + opponentCameraOffset[1]}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.quadOut});
+						}
+						if (val1 == 2) {
+							FlxTween.tween(camFollow, {x: boyfriend.getMidpoint().x - 100 -= boyfriend.cameraPosition[0] - boyfriendCameraOffset[0]}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.quadOut});
+							FlxTween.tween(camFollow, {y: boyfriend.getMidpoint().y - 100 += boyfriend.cameraPosition[1] + boyfriendCameraOffset[1]}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.quadOut});
+						}
+				}
+
+				switch (Std.parseInt(value2)) {
+					case 1:
+						if (val2 == 1) isCameraOnForcedPos = true;
+						if (val2 == 2) isCameraOnForcedPos = false;
+					default:
+						isCameraOnForcedPos = false;
+				}
+			case 'Set Camera Speed':
+				var speed:Float = Std.parseFloat(value1);
+				var duration:Float = Std.parseFloat(value2);
+
+				FlxTween.num(cameraSpeed, speed, duration, {ease: FlxEase.quadInOut, type: ONESHOT}, (v:Float) -> {cameraSpeed = v;});
+			case 'Play Animation':
+				var char:Character = dad;
+				switch (value2.toLowerCase().trim()) {
+					case 'bf' | 'boyfriend':
+						char = boyfriend;
+					default:
+						var val2:Int = Std.parseInt(value2);
+						if (Math.isNaN(val2)) val2 = 0;
+
+						switch (val2) {
+							case 1: char = boyfriend;
+						}
+				}
+
+				if (char != null) {
+					char.playAnim(value1, true);
+					char.specialAnim = true;
+				}
+
+			case 'Camera Follow Pos':
+				var val1:Float = Std.parseFloat(value1);
+				var val2:Float = Std.parseFloat(value2);
+				if (Math.isNaN(val1)) val1 = 0;
+				if (Math.isNaN(val2)) val2 = 0;
+
+				isCameraOnForcedPos = false;
+				if (!Math.isNaN(val1) || !Math.isNaN(val2)) {
+					FlxTween.tween(camFollow, {x: val1}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.quadOut});
+					FlxTween.tween(camFollow, {y: val2}, (Conductor.stepCrochet * 4 / 1000), {ease: FlxEase.quadOut});
+					isCameraOnForcedPos = true;
+				}
+			case 'Screen Shake':
+				var val1:Float = Std.parseFloat(value1);
+				if (Math.isNaN(val1)) {
+					val1 = 0;
+					camShake = false;
+				}
+
+				camShake = true;
+				shakeAmount = val1;
+			case 'Change Character':
+				var charType:Int = 0;
+				switch (value1) {
+					case 'dad' | 'opponent':
+						charType = 1;
+					default:
+						charType = Std.parseInt(value1);
+						if (Math.isNaN(charType)) charType = 0;
+				}
+
+				switch (charType) {
+					case 0:
+						if (boyfriend.curCharacter != value2) {
+							if (!boyfriendMap.exists(value2)) addCharacterToList(value2, charType);
+
+							var lastAlpha:Float = boyfriend.alpha;
+							boyfriend.alpha = 0.00001;
+							boyfriend = boyfriendMap.get(value2);
+							boyfriend.alpha = lastAlpha;
+							iconP1.changeIcon(boyfriend.healthIcon);
+						}
+					case 1:
+						if (dad.curCharacter != value2) {
+							if (!dadMap.exists(value2)) addCharacterToList(value2, charType);
+
+							var lastAlpha:Float = dad.alpha;
+							dad.alpha = 0.00001;
+							dad = dadMap.get(value2);
+							dad.alpha = lastAlpha;
+							iconP2.changeIcon(dad.healthIcon);
+						}
+				}
+				reloadHealthBarColors();
+			case 'Change Scroll Speed':
+				var val1:Float = Std.parseFloat(value1);
+				var val2:Float = Std.parseFloat(value2);
+				if (Math.isNaN(val1)) val1 = 1;
+				if (Math.isNaN(val2)) val2 = 0;
+
+				var newValue:Float = SONG.speed * 1 * val1;
+
+				if (val2 <= 0)
+					songSpeed = newValue;
+				else
+					songSpeedTween = FlxTween.tween(this, {songSpeed: newValue}, val2, {ease: FlxEase.linear, onComplete: function(twn:FlxTween) {songSpeedTween = null;}});
+		}
 	}
 
 	function moveCameraSection():Void {
