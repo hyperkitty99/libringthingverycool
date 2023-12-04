@@ -7,6 +7,9 @@ import openfl.display.BitmapData;
 import openfl.utils.ByteArray;
 import hl.video.Webm;
 import hl.video.Aom;
+import openfl.display3D.textures.RectangleTexture;
+import flixel.FlxG;
+import haxe.io.Bytes;
 
 enum FrameState {
 	Free;
@@ -113,7 +116,7 @@ class Video extends FlxSprite {
 	var cache : FrameCache;
 	var frameCacheSize : Int = 1;
 	var stopThread = false;
-	var texture : BitmapData;
+	var texture:RectangleTexture;
 	var playTime : Float;
 	var videoTime : Float;
 	var frameReady : Bool;
@@ -195,7 +198,8 @@ class Video extends FlxSprite {
 		videoWidth = webm.width;
 		videoHeight = webm.height;
 		videoTime = 0.;
-		texture = new BitmapData(videoWidth, videoHeight);
+		texture = FlxG.stage.context3D.createRectangleTexture(videoWidth, videoHeight, BGRA, true);
+		this.pixels = BitmapData.fromTexture(texture);
 		var multithread = frameCacheSize > 1;
 		cache = new FrameCache(multithread ? frameCacheSize : 1, webm.width, webm.height);
 		if(multithread) {
@@ -229,7 +233,7 @@ class Video extends FlxSprite {
 				videoTime = 0;
 			}
 			if(haxe.Timer.stamp() - playTime >= frame.time) {
-				this.pixels = frame.pixels;
+				texture.uploadFromByteArray(frame.pixels.getPixels(frame.pixels.rect), 0);
 				videoTime = frame.time;
 				cache.nextFrame();
 				if(frameCacheSize <= 1)
