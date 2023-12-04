@@ -181,7 +181,7 @@ class PlayState extends MusicBeatState
 	public var camHUD:FlxCamera;
 	public var camGame:FlxCamera;
 	public var camOther:FlxCamera;
-	public var cameraSpeed:Float = 1;
+	public var cameraSpeed:Float = 0;
 
 	var heyTimer:Float;
 
@@ -355,7 +355,7 @@ class PlayState extends MusicBeatState
 			camera_boyfriend: [0, 0],
 			camera_opponent: [0, 0],
 			camera_girlfriend: [800, 410],
-			camera_speed: 1
+			camera_speed: 0
 		};
 
 		defaultCamZoom = stageData.defaultZoom;
@@ -498,12 +498,7 @@ class PlayState extends MusicBeatState
 		strumLineNotes = new FlxTypedGroup<StrumNote>();
 		add(strumLineNotes);
 
-		// startCountdown();
-
 		generateSong(SONG.song);
-
-		// After all characters being loaded, it makes then invisible 0.01s later so that the player won't freeze when you change characters
-		// add(strumLine);
 
 		camFollow = new FlxPoint();
 		camFollowPos = new FlxObject(0, 0, 1, 1);
@@ -522,7 +517,6 @@ class PlayState extends MusicBeatState
 		add(camFollowPos);
 
 		FlxG.camera.follow(camFollowPos, LOCKON, 1);
-		// FlxG.camera.setScrollBounds(0, FlxG.width, 0, FlxG.height);
 		FlxG.camera.zoom = defaultCamZoom;
 		FlxG.camera.focusOn(camFollow);
 
@@ -617,13 +611,7 @@ class PlayState extends MusicBeatState
 		// SONG SPECIFIC SCRIPTS
 
 		var daSong:String = Paths.formatToSongPath(curSong);
-		if (isStoryMode && !seenCutscene)
-		{
-			startCountdown();
-			seenCutscene = true;
-		}
-		else
-			startCountdown();
+		cutsceneBullshit();
 		updateScore();
 
 		//PRECACHING MISS SOUNDS BECAUSE I THINK THEY CAN LAG PEOPLE AND FUCK THEM UP IDK HOW HAXE WORKS
@@ -788,6 +776,21 @@ class PlayState extends MusicBeatState
 
 		Paths.sound('intro1' + introSoundsSuffix);
 		Paths.sound('introGo' + introSoundsSuffix);
+	}
+
+	public function cutsceneBullshit():Void {
+		camFollowPos.setPosition(700, 300);
+
+		isCameraOnForcedPos = true;
+		defaultCamZoom = 2.5;
+
+		FlxTween.tween(this, {defaultCamZoom: 1.15}, 2.5, {ease: FlxEase.expoInOut, onComplete: function(twn:FlxTween) {
+			startCountdown();
+			isCameraOnForcedPos = false;
+			cameraSpeed = 1;
+		}});
+
+		FlxTween.tween(camFollowPos, {y: 400}, 2.5, {ease: FlxEase.expoInOut});
 	}
 
 	public function startCountdown():Void
