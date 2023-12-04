@@ -184,18 +184,6 @@ class Video extends FlxSprite {
 		if( onReady != null ) onReady();
 	}
 
-	public function loadResource( res : hxd.res.Resource, ?onReady : Void -> Void ) {
-		var e = res.entry;
-		webm = hl.video.Webm.fromReader(function(offset : Int, len : Int) {
-			var buf = haxe.io.Bytes.alloc(len);
-			var n = e.readBytes(buf, 0, offset, len);
-			return buf;
-		}, res.entry.size);
-		webm.availableSize = res.entry.size;
-		start();
-		if( onReady != null ) onReady();
-	}
-
 	function start() {
 		try {
 			webm.init();
