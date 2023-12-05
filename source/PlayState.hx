@@ -235,7 +235,6 @@ class PlayState extends MusicBeatState
 	public var bfShadow:Shadow = null;
 	var shakeAmount:Float = 0;
 	var camShake:Bool = false;
-	var video:Video;
 
 	override public function create()
 	{
@@ -337,7 +336,6 @@ class PlayState extends MusicBeatState
 		detailsPausedText = "Paused - " + detailsText;
 		#end
 
-		GameOverSubstate.resetVariables();
 		var songName:String = Paths.formatToSongPath(SONG.song);
 
 		curStage = SONG.stage;
@@ -424,10 +422,6 @@ class PlayState extends MusicBeatState
 		var floor:ParallaxSprite = new ParallaxSprite(-485, 525, Paths.image('bg/floor')).fixate(0, 0, 0.8, 0.8, 1.4, 1.4, "horizontal");
 		floor.antialiasing = true;
 		add(floor);
-
-		video = new Video();
-		video.loadFile(Sys.getCwd() + "assets/images/very important assets dont delete p;ease i beg you/whistle.mkv");
-		add(video);
 
 		add(gfGroup); //Needed for blammed lights
 
@@ -1648,9 +1642,7 @@ class PlayState extends MusicBeatState
 
 			persistentUpdate = false;
 			persistentDraw = false;
-			openSubState(new GameOverSubstate(boyfriend.getScreenPosition().x - boyfriend.positionArray[0], boyfriend.getScreenPosition().y - boyfriend.positionArray[1], camFollowPos.x, camFollowPos.y));
-
-			// MusicBeatState.switchState(new GameOverState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
+			FlxG.switchState(new GameOverState());
 
 			#if discord_rpc
 			// Game Over doesn't get his own variable because it's only used here
