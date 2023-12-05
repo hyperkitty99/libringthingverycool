@@ -528,7 +528,6 @@ class PlayState extends MusicBeatState
 		healthBarBG.x = 48;
 		healthBarBG.y = 48;
 		healthBarBG.scrollFactor.set();
-		if(ClientPrefs.downScroll) healthBarBG.y = 0.11 * FlxG.height;
 
 		healthBar = new FlxBar(healthBarBG.x, healthBarBG.y, RIGHT_TO_LEFT, Std.int(healthBarBG.width), Std.int(healthBarBG.height), this,
 			'health', 0, 2); 

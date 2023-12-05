@@ -29,21 +29,17 @@ using StringTools;
 
 class OptionsState extends MusicBeatState
 {
-	var options:Array<String> = ['Note Colors', 'Controls', 'Adjust Delay and Combo', 'Gameplay'];
+	var options:Array<String> = ['Controls', 'Gameplay'];
 	private var grpOptions:FlxTypedGroup<Alphabet>;
 	private static var curSelected:Int = 0;
 	public static var menuBG:FlxSprite;
 
 	function openSelectedSubstate(label:String) {
 		switch(label) {
-			case 'Note Colors':
-				openSubState(new options.NotesSubState());
 			case 'Controls':
 				openSubState(new options.ControlsSubState());
 			case 'Gameplay':
 				openSubState(new options.GameplaySettingsSubState());
-			case 'Adjust Delay and Combo':
-				MusicBeatState.switchState(new options.NoteOffsetState());
 		}
 	}
 
@@ -54,14 +50,6 @@ class OptionsState extends MusicBeatState
 		#if discord_rpc
 		DiscordClient.changePresence("Options Menu", null);
 		#end
-
-		var bg:FlxSprite = new FlxSprite().loadGraphic(Paths.image('menuDesat'));
-		bg.color = 0xFFea71fd;
-		bg.updateHitbox();
-
-		bg.screenCenter();
-		bg.antialiasing = true;
-		add(bg);
 
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
@@ -93,20 +81,28 @@ class OptionsState extends MusicBeatState
 	override function update(elapsed:Float) {
 		super.update(elapsed);
 
-		if (controls.UI_UP_P) {
+		if (controls.UI_UP_P)
 			changeSelection(-1);
-		}
-		if (controls.UI_DOWN_P) {
-			changeSelection(1);
-		}
 
-		if (controls.BACK) {
-			FlxG.sound.play(Paths.sound('cancelMenu'));
-			MusicBeatState.switchState(new MainMenuState());
-		}
+		if (controls.UI_DOWN_P)
+			changeSelection(1);
+
+		if (controls.BACK)
+			MusicBeatState.switchState(new PlayState());
 
 		if (controls.ACCEPT) {
 			openSelectedSubstate(options[curSelected]);
+			for (item in grpOptions.members) {
+				item.visible = false;
+				selectorLeft.visible = false;
+				selectorRight.visible = false;
+			}
+		} else {
+			for (item in grpOptions.members) {
+				item.visible = true;
+				selectorLeft.visible = true;
+				selectorRight.visible = true;
+			}
 		}
 	}
 	
