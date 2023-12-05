@@ -26,28 +26,16 @@ import flixel.graphics.FlxGraphic;
 import Controls;
 
 using StringTools;
-
+//note: remove this class after finishing the mod
 class GameplaySettingsSubState extends BaseOptionsMenu
 {
 	public function new()
 	{
-		//I'd suggest using "Downscroll" as an example for making your own option since it is the simplest here
-		var option:Option = new Option('Downscroll', //Name
-			'If checked, notes go Down instead of Up, simple enough.', //Description
-			'downScroll', //Save data variable name
-			'bool', //Variable type
-			false); //Default value
-		addOption(option);
-
-		var option:Option = new Option('Safe Frames',
-			'Changes how many frames you have for\nhitting a note earlier or late.',
-			'safeFrames',
-			'float',
-			10);
-		option.scrollSpeed = 5;
-		option.minValue = 2;
-		option.maxValue = 10;
-		option.changeValue = 0.1;
+		var option:Option = new Option('Downscroll',
+			'If checked, notes go Down instead of Up, simple enough.',
+			'downScroll', 
+			'bool',
+			false);
 		addOption(option);
 
 		super();
