@@ -72,7 +72,6 @@ class PauseSubState extends MusicBeatSubstate {
 				case "restart":
 					restartSong();
 				case "exit":
-					options();
 			}
 		});
 
@@ -123,10 +122,6 @@ class PauseSubState extends MusicBeatSubstate {
 		PlayState.instance.vocals.volume = 0;
 
 		MusicBeatState.resetState();
-	}
-
-	public static function options() {
-		MusicBeatState.switchState(new options.OptionsState());
 	}
 
 	override function destroy() {

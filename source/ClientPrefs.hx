@@ -7,10 +7,9 @@ import flixel.graphics.FlxGraphic;
 import Controls;
 
 class ClientPrefs {
-	public static var downScroll:Bool = false;
+	public static var downScroll:Bool = false; //change it to true when release
 	public static var framerate:Int = 60;
 	public static var noteOffset:Int = 0;
-	public static var arrowHSV:Array<Array<Int>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]];
 	public static var comboOffset:Array<Int> = [0, 0, 0, 0];
 	public static var ratingOffset:Int = 0;
 	public static var safeFrames:Float = 10;
@@ -49,7 +48,6 @@ class ClientPrefs {
 		FlxG.save.data.downScroll = downScroll;
 		FlxG.save.data.framerate = framerate;
 		FlxG.save.data.noteOffset = noteOffset;
-		FlxG.save.data.arrowHSV = arrowHSV;
 		FlxG.save.data.comboOffset = comboOffset;
 
 		FlxG.save.data.ratingOffset = ratingOffset;
@@ -80,9 +78,6 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.noteOffset != null) {
 			noteOffset = FlxG.save.data.noteOffset;
-		}
-		if(FlxG.save.data.arrowHSV != null) {
-			arrowHSV = FlxG.save.data.arrowHSV;
 		}
 		if(FlxG.save.data.comboOffset != null) {
 			comboOffset = FlxG.save.data.comboOffset;
