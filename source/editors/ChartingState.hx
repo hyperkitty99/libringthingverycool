@@ -1,8 +1,5 @@
 package editors;
 
-#if discord_rpc
-import Discord.DiscordClient;
-#end
 import flash.geom.Rectangle;
 import haxe.Json;
 import haxe.format.JsonParser;
@@ -222,11 +219,6 @@ class ChartingState extends MusicBeatState
 		}
 
 		// Paths.clearMemory();
-
-		#if discord_rpc
-		// Updating Discord Rich Presence
-		DiscordClient.changePresence("Chart Editor", StringTools.replace(_song.song, '-', ' '));
-		#end
 
 		vortex = FlxG.save.data.chart_vortex;
 		ignoreWarnings = FlxG.save.data.ignoreWarnings;

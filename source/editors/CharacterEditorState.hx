@@ -1,8 +1,5 @@
 package editors;
 
-#if discord_rpc
-import Discord.DiscordClient;
-#end
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -220,56 +217,14 @@ class CharacterEditorState extends MusicBeatState
 		var playerXDifference = 0;
 		if(char.isPlayer) playerXDifference = 670;
 
-		if(onPixelBG) {
-			var playerYDifference:Float = 0;
-			if(char.isPlayer) {
-				playerXDifference += 200;
-				playerYDifference = 220;
-			}
+		var bg:FlxSprite = new FlxSprite(-600 + OFFSET_X - playerXDifference, -300).loadGraphic(Paths.image('stageback'));
+		bgLayer.add(bg);
 
-			var bgSky:BGSprite = new BGSprite('weeb/weebSky', OFFSET_X - (playerXDifference / 2) - 300, 0 - playerYDifference, 0.1, 0.1);
-			bgLayer.add(bgSky);
-			bgSky.antialiasing = false;
-
-			var repositionShit = -200 + OFFSET_X - playerXDifference;
-
-			var bgSchool:BGSprite = new BGSprite('weeb/weebSchool', repositionShit, -playerYDifference + 6, 0.6, 0.90);
-			bgLayer.add(bgSchool);
-			bgSchool.antialiasing = false;
-
-			var bgStreet:BGSprite = new BGSprite('weeb/weebStreet', repositionShit, -playerYDifference, 0.95, 0.95);
-			bgLayer.add(bgStreet);
-			bgStreet.antialiasing = false;
-
-			var widShit = Std.int(bgSky.width * 6);
-			var bgTrees:FlxSprite = new FlxSprite(repositionShit - 380, -800 - playerYDifference);
-			bgTrees.frames = Paths.getPackerAtlas('weeb/weebTrees');
-			bgTrees.animation.add('treeLoop', [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18], 12);
-			bgTrees.animation.play('treeLoop');
-			bgTrees.scrollFactor.set(0.85, 0.85);
-			bgLayer.add(bgTrees);
-			bgTrees.antialiasing = false;
-
-			bgSky.setGraphicSize(widShit);
-			bgSchool.setGraphicSize(widShit);
-			bgStreet.setGraphicSize(widShit);
-			bgTrees.setGraphicSize(Std.int(widShit * 1.4));
-
-			bgSky.updateHitbox();
-			bgSchool.updateHitbox();
-			bgStreet.updateHitbox();
-			bgTrees.updateHitbox();
-			changeBGbutton.text = "Regular BG";
-		} else {
-			var bg:BGSprite = new BGSprite('stageback', -600 + OFFSET_X - playerXDifference, -300, 0.9, 0.9);
-			bgLayer.add(bg);
-
-			var stageFront:BGSprite = new BGSprite('stagefront', -650 + OFFSET_X - playerXDifference, 500, 0.9, 0.9);
-			stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-			stageFront.updateHitbox();
-			bgLayer.add(stageFront);
-			changeBGbutton.text = "Pixel BG";
-		}
+		var stageFront:FlxSprite = new FlxSprite(-650 + OFFSET_X - playerXDifference, 500).loadGraphic(Paths.image('stagefront'));
+		stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
+		stageFront.updateHitbox();
+		bgLayer.add(stageFront);
+		changeBGbutton.text = "Pixel BG";
 	}
 
 	/*var animationInputText:FlxUIInputText;
@@ -431,7 +386,6 @@ class CharacterEditorState extends MusicBeatState
 			daAnim = characterList[Std.parseInt(character)];
 			check_player.checked = daAnim.startsWith('bf');
 			loadChar(!check_player.checked);
-			updatePresence();
 			reloadCharacterDropDown();
 		});
 		charDropDown.selectedLabel = daAnim;
@@ -760,7 +714,6 @@ class CharacterEditorState extends MusicBeatState
 			if(sender == healthIconInputText) {
 				leHealthIcon.changeIcon(healthIconInputText.text);
 				char.healthIcon = healthIconInputText.text;
-				updatePresence();
 			}
 			else if(sender == imageInputText) {
 				char.imageFile = imageInputText.text;
@@ -980,7 +933,6 @@ class CharacterEditorState extends MusicBeatState
 			positionCameraXStepper.value = char.cameraPosition[0];
 			positionCameraYStepper.value = char.cameraPosition[1];
 			reloadAnimationDropDown();
-			updatePresence();
 		}
 	}
 
@@ -1041,13 +993,6 @@ class CharacterEditorState extends MusicBeatState
 		healthColorStepperG.value = char.healthColorArray[1];
 		healthColorStepperB.value = char.healthColorArray[2];
 		healthBarBG.color = FlxColor.fromRGB(char.healthColorArray[0], char.healthColorArray[1], char.healthColorArray[2]);
-	}
-
-	function updatePresence() {
-		#if discord_rpc
-		// Updating Discord Rich Presence
-		DiscordClient.changePresence("Character Editor", "Character: " + daAnim, leHealthIcon.getCharacter());
-		#end
 	}
 
 	override function update(elapsed:Float)

@@ -1,8 +1,5 @@
 package options;
 
-#if discord_rpc
-import Discord.DiscordClient;
-#end
 import flash.text.TextField;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -47,10 +44,6 @@ class OptionsState extends MusicBeatState
 	var selectorRight:Alphabet;
 
 	override function create() {
-		#if discord_rpc
-		DiscordClient.changePresence("Options Menu", null);
-		#end
-
 		grpOptions = new FlxTypedGroup<Alphabet>();
 		add(grpOptions);
 

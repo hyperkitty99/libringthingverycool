@@ -317,23 +317,6 @@ class PlayState extends MusicBeatState
 		Conductor.mapBPMChanges(SONG);
 		Conductor.changeBPM(SONG.bpm);
 
-		#if discord_rpc
-		storyDifficultyText = CoolUtil.difficulties[storyDifficulty];
-
-		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
-		if (isStoryMode)
-		{
-			detailsText = "Story Mode: " + WeekData.getCurrentWeek().weekName;
-		}
-		else
-		{
-			detailsText = "Freeplay";
-		}
-
-		// String for when the game is paused
-		detailsPausedText = "Paused - " + detailsText;
-		#end
-
 		var songName:String = Paths.formatToSongPath(SONG.song);
 
 		curStage = SONG.stage;
@@ -618,11 +601,6 @@ class PlayState extends MusicBeatState
 		precacheList.set('veryCoolPauseMusic', 'music');
 
 		precacheList.set('alphabet', 'image');
-	
-		#if discord_rpc
-		// Updating Discord Rich Presence.
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-		#end
 
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
@@ -966,10 +944,6 @@ class PlayState extends MusicBeatState
 
 		// Song duration in a float, useful for the time left feature
 		songLength = inst.length;
-		#if discord_rpc
-		// Updating Discord Rich Presence (with Time Left)
-		DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength);
-		#end
 	}
 
 	var debugNum:Int = 0;
@@ -1204,51 +1178,9 @@ class PlayState extends MusicBeatState
 			}
 
 			paused = false;
-
-			#if discord_rpc
-			if (startTimer != null && startTimer.finished)
-			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
-			}
-			else
-			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-			}
-			#end
 		}
 
 		super.closeSubState();
-	}
-
-	override public function onFocus():Void
-	{
-		#if discord_rpc
-		if (health > 0 && !paused)
-		{
-			if (Conductor.songPosition > 0.0)
-			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter(), true, songLength - Conductor.songPosition - ClientPrefs.noteOffset);
-			}
-			else
-			{
-				DiscordClient.changePresence(detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-			}
-		}
-		#end
-
-		super.onFocus();
-	}
-
-	override public function onFocusLost():Void
-	{
-		#if discord_rpc
-		if (health > 0 && !paused)
-		{
-			DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-		}
-		#end
-
-		super.onFocusLost();
 	}
 
 	function resyncVocals():Void
@@ -1606,10 +1538,6 @@ class PlayState extends MusicBeatState
 		}
 		openSubState(new PauseSubState(boyfriend.getScreenPosition().x, boyfriend.getScreenPosition().y));
 		//}
-
-		#if discord_rpc
-		DiscordClient.changePresence(detailsPausedText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-		#end
 	}
 
 	function openChartEditor()
@@ -1619,10 +1547,6 @@ class PlayState extends MusicBeatState
 		//cancelMusicFadeTween();
 		MusicBeatState.switchState(new ChartingState());
 		chartingMode = true;
-
-		#if discord_rpc
-		DiscordClient.changePresence("Chart Editor", null, null, true);
-		#end
 	}
 
 	public var isDead:Bool = false;
@@ -1638,11 +1562,6 @@ class PlayState extends MusicBeatState
 			persistentUpdate = false;
 			persistentDraw = false;
 			FlxG.switchState(new GameOverState());
-
-			#if discord_rpc
-			// Game Over doesn't get his own variable because it's only used here
-			DiscordClient.changePresence("Game Over - " + detailsText, SONG.song + " (" + storyDifficultyText + ")", iconP2.getCharacter());
-			#end
 			isDead = true;
 			return true;
 		}
@@ -1900,8 +1819,6 @@ class PlayState extends MusicBeatState
 			openChartEditor();
 			return;
 		}
-
-		WeekData.loadTheFirstEnabledMod();
 
 		if(FlxTransitionableState.skipNextTransIn)
 			CustomFadeTransition.nextCamera = null;

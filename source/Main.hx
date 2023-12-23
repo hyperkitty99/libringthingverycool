@@ -14,10 +14,6 @@ import openfl.events.Event;
 import openfl.display.StageScaleMode;
 import lime.app.Application;
 
-#if discord_rpc
-import Discord.DiscordClient;
-#end
-
 #if CRASH_HANDLER
 import openfl.events.UncaughtErrorEvent;
 import haxe.CallStack;
@@ -93,15 +89,6 @@ class Main extends Sprite {
 		#if (CRASH_HANDLER && hl)
 		hl.Api.setErrorHandler(onCrash);
 		#end
-
-		#if discord_rpc
-		if (!DiscordClient.isInitialized) {
-			DiscordClient.initialize();
-			Application.current.window.onClose.add(function() {
-				DiscordClient.shutdown();
-			});
-		}
-		#end
 	}
 
 	// Code was entirely made by sqirra-rng for their fnf engine named "Izzy Engine", big props to them!!!
@@ -150,9 +137,6 @@ class Main extends Sprite {
 		Application.current.window.alert(errMsg, "Error!");
 		#end
 
-		#if discord_rpc
-		DiscordClient.shutdown();
-		#end
 		Sys.exit(1);
 	}
 	#end
