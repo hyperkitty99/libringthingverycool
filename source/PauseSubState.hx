@@ -22,7 +22,7 @@ class PauseSubState extends MusicBeatSubstate {
 
 	public static final gaySexScale:Float = 2.88;
 
-	var menuItems:Array<String> = ['resume', 'restart', 'exit'];
+	var menuItems:Array<String> = ['resume', 'restart'];
 	var curSelected:Int = 0;
 
 	var pauseMusic:FlxSound;
@@ -71,7 +71,6 @@ class PauseSubState extends MusicBeatSubstate {
 					close();
 				case "restart":
 					restartSong();
-				case "exit":
 			}
 		});
 
@@ -117,7 +116,7 @@ class PauseSubState extends MusicBeatSubstate {
 	}
 
 	public static function restartSong() {
-		PlayState.instance.paused = true; // For lua
+		PlayState.instance.paused = true;
 		if (FlxG.sound.music != null) FlxG.sound.music.volume = 0;
 		PlayState.instance.vocals.volume = 0;
 
