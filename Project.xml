@@ -29,16 +29,14 @@
 	<set name="BUILD_DIR" value="export/release" unless="debug" />
 
 	<classpath name="source" />
+	<library name="default" embed="true"/>
 	
 	<!-- PSYCH ENGINE CUSTOMIZATION -->
 	<define name="LUA_ALLOWED" if="cpp" />
 	<define name="CRASH_HANDLER" if="desktop" />
 
-	<assets path="assets" exclude="*.ogg" if="web"/>
-	<assets path="assets" exclude="*.mp3"  unless="web"/> 
-	
-	<assets path='art/readme.txt' rename='do NOT readme.txt' />
-	<assets path="assets/fonts" />
+	<assets path="assets" embed="true"/>
+	<assets path="assets/fonts" embed="true"/>
 	
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -55,6 +53,7 @@
 	<!--<haxelib name="polymod"/> -->
 	<haxelib name="discord_rpc" if="cpp"/>
 	<haxelib name="parallaxlt"/>
+	<haxelib name="actuate"/>
 	<haxelib name="hlvideo"/>
 
 	<!-- <haxelib name="markdown" /> -->

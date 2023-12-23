@@ -55,6 +55,8 @@ import flixel_5_3_1.ParallaxSprite as ParallaxSprite;
 import flixel.addons.effects.FlxSkewedSprite;
 import openfl.display.BitmapData;
 import openfl.geom.Matrix;
+import motion.Actuate;
+import motion.easing.Expo;
 
 #if sys
 import sys.FileSystem;
@@ -156,7 +158,6 @@ class PlayState extends MusicBeatState
 	var songPercent:Float = 0;
 
 	public var ratingsData:Array<Rating> = [];
-	public var sicks:Int = 0;
 	public var shits:Int = 0;
 
 	private var generatedMusic:Bool = false;
@@ -183,8 +184,6 @@ class PlayState extends MusicBeatState
 	public var camOther:FlxCamera;
 	public var cameraSpeed:Float = 0;
 
-	var heyTimer:Float;
-
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
@@ -193,7 +192,6 @@ class PlayState extends MusicBeatState
 	public static var campaignScore:Int = 0;
 	public static var campaignMisses:Int = 0;
 	public static var seenCutscene:Bool = false;
-	public static var deathCounter:Int = 0;
 
 	public var defaultCamZoom:Float = 1.05;
 
@@ -1632,8 +1630,6 @@ class PlayState extends MusicBeatState
 		if (((skipHealthCheck && instakillOnMiss) || health <= 0) && !practiceMode && !isDead)
 		{
 			boyfriend.stunned = true;
-			deathCounter++;
-
 			paused = true;
 
 			vocals.stop();
@@ -1688,6 +1684,9 @@ class PlayState extends MusicBeatState
 				FlxTween.num(defaultCamZoom, zoomthing, duration, {ease: FlxEase.quadInOut, type: ONESHOT}, (v:Float) -> {defaultCamZoom = v;});
 			case 'Building fall':
 				clicked = true;
+			case 'Window Explode':
+				FlxG.sound.play(Paths.sound('table')).onComplete = () -> Sys.exit(0);
+				Actuate.tween(FlxG.stage.window, 0.5, {y: FlxG.stage.window.display.bounds.height + 500}).ease(Expo.easeIn);
 			case 'Set Camera Target':
 				var val1:Null<Int> = Std.parseInt(value1);
 				var val2:Null<Int> = Std.parseInt(value2);
@@ -1872,7 +1871,6 @@ class PlayState extends MusicBeatState
 	public var transitioning = false;
 	public function endSong():Void
 	{
-		//Should kill you if you tried to cheat
 		if(!startingSong) {
 			notes.forEach(function(daNote:Note) {
 				if(daNote.strumTime < songLength - Conductor.safeZoneOffset) {
@@ -1890,28 +1888,24 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-		canPause = false;
 		endingSong = true;
 		camZooming = false;
 		inCutscene = false;
 		updateTime = false;
 
-		deathCounter = 0;
 		seenCutscene = false;
 		playbackRate = 1;
 
-		if (chartingMode)
-		{
+		if (chartingMode) {
 			openChartEditor();
 			return;
 		}
 
 		WeekData.loadTheFirstEnabledMod();
-		// cancelMusicFadeTween();
-		if(FlxTransitionableState.skipNextTransIn) {
+
+		if(FlxTransitionableState.skipNextTransIn)
 			CustomFadeTransition.nextCamera = null;
-		}
-		FlxG.sound.playMusic(Paths.music('freakyMenu'));
+
 		changedDifficulty = false;
 		transitioning = true;
 	}
@@ -1947,7 +1941,6 @@ class PlayState extends MusicBeatState
 			pixelShitPart2 = '-pixel';
 		}
 
-		Paths.image(pixelShitPart1 + "sick" + pixelShitPart2);
 		Paths.image(pixelShitPart1 + "shit" + pixelShitPart2);
 		Paths.image(pixelShitPart1 + "combo" + pixelShitPart2);
 		
@@ -2447,20 +2440,6 @@ class PlayState extends MusicBeatState
 							bfShadow.y = 795;
 						case 'singRIGHT':
 							bfShadow.x = 1153;
-					}
-				}
-
-				if(note.noteType == 'Hey!') {
-					if(boyfriend.animOffsets.exists('hey')) {
-						boyfriend.playAnim('hey', true);
-						boyfriend.specialAnim = true;
-						boyfriend.heyTimer = 0.6;
-					}
-
-					if(gf != null && gf.animOffsets.exists('cheer')) {
-						gf.playAnim('cheer', true);
-						gf.specialAnim = true;
-						gf.heyTimer = 0.6;
 					}
 				}
 			}

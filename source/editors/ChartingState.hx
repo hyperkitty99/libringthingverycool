@@ -86,6 +86,7 @@ class ChartingState extends MusicBeatState
 		['Set Camera Target', "Value 1: Who to target?\nValue 2: Is the target forced?"],
 		['Set Camera Zoom', "Value 1: The Camera zoom.\nValue 2: Time it takes to change fully in seconds."],
 		['Building fall', "go fucking die stupid"],
+		['Window Explode', "go fucking die stupid"],
 	];
 
 	var _file:FileReference;

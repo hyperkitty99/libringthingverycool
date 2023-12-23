@@ -286,7 +286,7 @@ class Paths
 
 	// completely rewritten asset loading? fuck!
 	public static var currentTrackedAssets:Map<String, FlxGraphic> = [];
-	public static function returnGraphic(key:String, ?library:String) {
+	public static function returnGraphic(key:String, ?library:String,  ?posInfos:haxe.PosInfos) {
 		#if MODS_ALLOWED
 		var modKey:String = modsImages(key);
 		if(FileSystem.exists(modKey)) {
@@ -312,7 +312,7 @@ class Paths
 			localTrackedAssets.push(path);
 			return currentTrackedAssets.get(path);
 		}
-		trace('oh no its returning null NOOOO');
+		trace('Image with key "$key" could not be found' + (library == null ? '' : ' in the library "$library"') + '! ' + '(${posInfos.fileName}, ${posInfos.lineNumber})');
 		return null;
 	}
 
