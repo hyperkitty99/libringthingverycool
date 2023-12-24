@@ -102,7 +102,7 @@ class Character extends FlxSprite
 				if (!Assets.exists(path))
 					path = Paths.getPreloadPath('data/' + DEFAULT_CHARACTER + '.json'); //If a character couldn't be found, change him to BF just to prevent a crash
 
-				var rawJson = File.getContent(path);
+				var rawJson = Assets.getText(path);
 
 				var json:CharacterFile = cast Json.parse(rawJson);
 				frames = Paths.getSparrowAtlas(json.image);
