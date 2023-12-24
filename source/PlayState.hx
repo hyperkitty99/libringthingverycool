@@ -305,7 +305,7 @@ class PlayState extends MusicBeatState
 		persistentUpdate = true;
 		persistentDraw = true;
 
-		var rawJson = File.getContent(Paths.json('chart')).trim();
+		var rawJson = Assets.getText(Paths.json('chart')).trim();
 
 		while (!rawJson.endsWith("}"))
 			rawJson = rawJson.substr(0, rawJson.length - 1);

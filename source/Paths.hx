@@ -326,12 +326,7 @@ class Paths
 		#if MODS_ALLOWED
 			currentTrackedSounds.set(gottenPath, Sound.fromFile('./' + gottenPath));
 		#else
-		{
-			var folder:String = '';
-			if(path == 'songs') folder = 'songs:';
-
-			currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound(folder + getPath('$path/$key.$SOUND_EXT', SOUND, library)));
-		}
+			currentTrackedSounds.set(gottenPath, OpenFlAssets.getSound( getPath('$path/$key.$SOUND_EXT', SOUND, library)));
 		#end
 		localTrackedAssets.push(gottenPath);
 		return currentTrackedSounds.get(gottenPath);
