@@ -16,12 +16,6 @@ class Song
 {
 	public static function onLoadJson(songJson:Dynamic) // Convert old charts to newest format
 	{
-		if(songJson.gfVersion == null)
-		{
-			songJson.gfVersion = songJson.player3;
-			songJson.player3 = null;
-		}
-
 		if(songJson.events == null)
 		{
 			songJson.events = [];

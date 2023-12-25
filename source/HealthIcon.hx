@@ -52,9 +52,6 @@ class HealthIcon extends FlxSprite
 			this.char = char;
 
 			antialiasing = true;
-			if(char.endsWith('-pixel')) {
-				antialiasing = false;
-			}
 		}
 	}
 
