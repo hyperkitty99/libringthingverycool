@@ -599,8 +599,6 @@ class PlayState extends MusicBeatState
 
 		precacheList.set('veryCoolPauseMusic', 'music');
 
-		precacheList.set('alphabet', 'image');
-
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyPress);
 		FlxG.stage.addEventListener(KeyboardEvent.KEY_UP, onKeyRelease);
 
